@@ -53,8 +53,8 @@ export default function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/problems" element={<ProblemsPage />} />
             <Route path="/data-sets" element={<DataSetsPage />} />
-            <Route path="/models " element={<ModelsPage />} />
-            <Route path="/leaderboard " element={<LeaderboardPage />} />
+            <Route path="/models" element={<ModelsPage />} />
+            <Route path="/leaderboard" element={<LeaderboardPage />} />
           </Routes>
         </AppShell.Main>
       </AppShell>
