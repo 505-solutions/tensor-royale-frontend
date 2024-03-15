@@ -1,12 +1,63 @@
 import '@mantine/core/styles.css';
-import { MantineProvider } from '@mantine/core';
-import { Router } from './Router';
+import { MantineProvider, AppShell, Text, Group, Button } from '@mantine/core';
+import { NavLink, Route, Routes } from 'react-router-dom';
+
 import { theme } from './theme';
+import { HomePage } from './pages/Home.page';
+import { ProblemsPage } from './pages/Problems.page';
+import { DataSetsPage } from './pages/DataSets.page';
+import { ModelsPage } from './pages/Models.page';
+import { LeaderboardPage } from './pages/Leaderboard.page';
 
 export default function App() {
   return (
     <MantineProvider theme={theme}>
-      <Router />
+      <AppShell>
+        <AppShell.Header>
+          <Group h="70px" px="md" justify="space-between">
+            <Text size="xl" fw={700}>
+              TensorRoyale
+            </Text>
+            <Group justify="center">
+              <NavLink to="/">
+                <Button justify="center" variant="default" style={{ border: '0px' }}>
+                  Home
+                </Button>
+              </NavLink>
+              <NavLink to="/problems">
+                <Button justify="center" variant="default" style={{ border: '0px' }}>
+                  Problems
+                </Button>
+              </NavLink>
+              <NavLink to="/data-sets">
+                <Button justify="center" variant="default" style={{ border: '0px' }}>
+                  Data sets
+                </Button>
+              </NavLink>
+              <NavLink to="/models">
+                <Button justify="center" variant="default" style={{ border: '0px' }}>
+                  Models
+                </Button>
+              </NavLink>
+              <NavLink to="/leaderboard">
+                <Button justify="center" variant="default" style={{ border: '0px' }}>
+                  Leaderboard
+                </Button>
+              </NavLink>
+            </Group>
+          </Group>
+        </AppShell.Header>
+
+        <AppShell.Main pt="70px">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/problems" element={<ProblemsPage />} />
+            <Route path="/data-sets" element={<DataSetsPage />} />
+            <Route path="/models " element={<ModelsPage />} />
+            <Route path="/leaderboard " element={<LeaderboardPage />} />
+          </Routes>
+        </AppShell.Main>
+      </AppShell>
     </MantineProvider>
   );
 }
