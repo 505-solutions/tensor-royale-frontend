@@ -1,8 +1,19 @@
 import { Textarea, Group, Button, Select, FileInput, Title, Text } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import { useEffect, useState } from 'react';
+import { getProblems, postDataset } from '@/utils/data-connections';
 
 export function AddDatasetComponent(props?: any) {
   const { displayTitle } = props ?? false;
+
+  const [problems, setProblems] = useState([]);
+
+  useEffect(() => {
+    getProblems().then((rsp) => {
+      const p = rsp.data.map((el: any) => ({ value: el.id.toString(), label: el.title }));
+      setProblems(p);
+    });
+  }, []);
 
   const form = useForm({
     initialValues: {
@@ -13,7 +24,7 @@ export function AddDatasetComponent(props?: any) {
   });
 
   function onFormSubmit(data: any) {
-    console.log(data);
+    postDataset(data);
   }
 
   return (
@@ -30,13 +41,7 @@ export function AddDatasetComponent(props?: any) {
       <Select
         label="Problem"
         placeholder="Pick one of your problems to add dataset for it"
-        data={[
-          { value: '1', label: 'Problem 1' },
-          { value: '2', label: 'Problem 2' },
-          { value: '3', label: 'Problem 3' },
-
-          { value: '4', label: 'Problem 4' },
-        ]}
+        data={problems}
         searchable
         {...form.getInputProps('problem_id')}
       />

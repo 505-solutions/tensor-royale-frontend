@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { Badge, Card, Flex, Group, Text } from '@mantine/core';
 import { IconCheck, IconX } from '@tabler/icons-react';
 import { useNavigate } from 'react-router-dom';

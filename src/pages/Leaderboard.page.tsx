@@ -1,5 +1,5 @@
+import { Center, Flex, Title, Text, Card, ScrollArea } from '@mantine/core';
 import { dummyLeaderboardData } from '@/utils/dummy-data';
-import { Button, Center, Flex, NavLink, Title, Text, Card, ScrollArea } from '@mantine/core';
 
 export function LeaderboardPage() {
   return (

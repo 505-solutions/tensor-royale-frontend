@@ -2,24 +2,25 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Center, Flex, Badge, Card, Group, Text, Title, ScrollArea, Button } from '@mantine/core';
 import { IconCheck, IconX } from '@tabler/icons-react';
-import { dummyModels, dummyProblems } from '@/utils/dummy-data';
-import { ProblemModel } from '@/utils/models';
+import { ModelTraining, ProblemModel } from '@/utils/models';
 import { getDate } from '@/utils/helper-functions';
+import { getProblemById, getProblemSubmissions } from '@/utils/data-connections';
 
 export function ProblemDetailComponent() {
   const { id } = useParams();
 
+  const [submissions, setSubmissions] = useState([]);
   const [problem, setProblem] = useState<ProblemModel | undefined>(undefined);
+
   useEffect(() => {
     if (id) {
-      const p = getProblem(+id);
-      setProblem(p);
+      getProblemById(+id).then((resp) => setProblem(resp));
+      getProblemSubmissions(+id).then((resp) => {
+        console.log('submissions:  ', resp);
+        setSubmissions(resp.data);
+      });
     }
   }, []);
-
-  function getProblem(problem_id: number) {
-    return dummyProblems.filter((p) => p.id === problem_id)[0] as ProblemModel;
-  }
 
   return (
     <>
@@ -71,13 +72,12 @@ export function ProblemDetailComponent() {
           </Group>
 
           <ScrollArea h="500px">
-            {dummyModels
-              .filter((ds) => ds.problem_id === problem?.id)
-              .map((ds) => (
+            {submissions
+              .map((ds: ModelTraining) => (
                 <Card shadow="sm" padding="lg" radius="md" withBorder mb="4px">
                   <Group justify="space-between" mt="md" mb="xs">
                     <Text fw={600}>Author:{ds?.author}</Text>
-                    <Badge color="green">{ds.size}</Badge>
+                    <Badge color="green">{ds.size ?? '?'}MB</Badge>
                   </Group>
                   <Text size="sm">{ds?.description}</Text>
                 </Card>

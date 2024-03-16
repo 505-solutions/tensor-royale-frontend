@@ -6,14 +6,15 @@ export interface ProblemModel {
   title: string;
   description: string;
   reward: number;
-  solved: boolean;
-  submissions_count: number;
-  has_dataset: boolean;
+  solved?: boolean;
+  submissions_count?: number;
+  has_dataset?: boolean;
 }
 
 // to je model k se poslje na backend
 export interface DataModel {
   id: number;
+  name: string;
   timestamp: number;
   file_train: unknown; // nek zip file
   description: string;
@@ -34,12 +35,13 @@ export interface ModelTraining {
 // to je model k ga hocem dobit nazaj od backenda
 export interface DatasetModel {
   id: number;
+  name: string;
   timestamp: number;
   author: string;
   problem: ProblemModel | null;
   description: string;
   file_url: string;
-  size?: string;
+  size?: number;
 }
 
 export interface ActiveModel {

@@ -4,6 +4,7 @@ import { useForm } from '@mantine/form';
 import { useState } from 'react';
 import { IconCheck } from '@tabler/icons-react';
 import { AddDatasetComponent } from '../datasets/AddDatasetComponent';
+import { postProblem } from '@/utils/data-connections';
 
 export function AddProblemComponent() {
   const [submitted, setSubmitted] = useState(false);
@@ -19,7 +20,7 @@ export function AddProblemComponent() {
 
   function onFormSubmit(data: any) {
     setSubmitted(true);
-    console.log(data);
+    postProblem(data);
   }
 
   return (

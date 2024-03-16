@@ -1,13 +1,21 @@
 import { Center, Flex, Button, Title, Text } from '@mantine/core';
 import { NavLink } from 'react-router-dom';
 
+import { useEffect, useState } from 'react';
 import { ProblemItemComponent } from '@/components/problems/ProblemItemComponent';
-import { dummyProblems } from '../utils/dummy-data';
+import { getProblems } from '@/utils/data-connections';
 
 export function ProblemsPage() {
-  const problems = dummyProblems.map((problem, i) => (
-    <ProblemItemComponent problem={problem} key={i} />
-  ));
+  const [problems, setProblems] = useState([]);
+
+  useEffect(() => {
+    getProblems().then((result) => {
+      const p = result.data.map((problem: any, i: any) => (
+        <ProblemItemComponent problem={problem} key={i} />
+      ));
+      setProblems(p);
+    });
+  }, []);
 
   return (
     <>
