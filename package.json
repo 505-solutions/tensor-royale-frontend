@@ -19,7 +19,12 @@
     "storybook:build": "storybook build"
   },
   "dependencies": {
+    "@dynamic-labs/ethereum": "*",
     "@dynamic-labs/ethereum-aa": "^1.0.4",
+    "@dynamic-labs/ethers-v5": "*",
+    "@dynamic-labs/sdk-react-core": "*",
+    "@dynamic-labs/starknet": "*",
+    "@dynamic-labs/wagmi-connector": "*",
     "@lighthouse-web3/sdk": "^0.3.0",
     "@mantine/core": "7.6.1",
     "@mantine/dates": "^7.6.2",
@@ -30,6 +35,7 @@
     "@tabler/icons-react": "^3.1.0",
     "axios": "^1.6.8",
     "dayjs": "^1.11.10",
+    "ethers": "^5",
     "react": "^18.2.0",
     "react-dnd": "^16.0.1",
     "react-dom": "^18.2.0",
@@ -37,9 +43,6 @@
     "vite": "^4.4.5"
   },
   "devDependencies": {
-    "@dynamic-labs/ethereum": "*",
-    "@dynamic-labs/sdk-react-core": "*",
-    "@dynamic-labs/starknet": "*",
     "@storybook/addon-essentials": "^8.0.0",
     "@storybook/addon-interactions": "^8.0.0",
     "@storybook/addon-links": "^8.0.0",
@@ -77,7 +80,8 @@
     "stylelint-config-standard-scss": "^13.0.0",
     "typescript": "^5.4.2",
     "vite-tsconfig-paths": "^4.3.1",
-    "vitest": "^1.3.1"
+    "vitest": "^1.3.1",
+    "wagmi": "^1.4.5"
   },
   "packageManager": "yarn@4.1.1"
 }
