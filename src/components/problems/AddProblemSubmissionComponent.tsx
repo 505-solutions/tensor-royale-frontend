@@ -30,7 +30,9 @@ export function AddProblemSubmissionComponent() {
       setProblem(r);
     });
     getProblemDatasets(+id!).then((r: any) => {
+      console.log(r)
       const ds = r.data.map((d: any) => ({ value: d.id.toString(), label: d.name }));
+      console.log(ds)
       setDatasets(ds);
     });
   }, []);

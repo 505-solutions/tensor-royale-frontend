@@ -9,7 +9,7 @@ const instance = axios.create({
 
 
 export async function getProblems() {
-  const res = await instance.post('problems');
+  const res = await instance.post('problems', {});
   return res;
 }
 
@@ -34,11 +34,11 @@ export async function postProblem(model: any) {
     title: model.title,
     description: model.description,
     reward: model.reward,
-  } as ProblemModel;
+  };
+
+  console.log(data)
 
   const res = await instance.post('problems/create', data);
-
-  data.id = res.data.id;
 
 
   return res;
@@ -62,6 +62,7 @@ export async function getUserDatasets(addr: string) {
 export async function postDataset(model: any) {
   const data = {
     timestamp: Date.now(),
+    name: model.name, 
     author: model.author,
     file_train: model.file.name,
     description: model.description,
