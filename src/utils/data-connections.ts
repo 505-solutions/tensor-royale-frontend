@@ -7,10 +7,6 @@ const instance = axios.create({
   timeout: 1000,
 });
 
-const rustApi = axios.create({
-  baseURL: 'https://tensorroyale-prover.alpi314.com/',
-  timeout: 1000,
-});
 
 export async function getProblems() {
   const res = await instance.post('problems');
@@ -44,7 +40,6 @@ export async function postProblem(model: any) {
 
   data.id = res.data.id;
 
-  const result = await rustApi.post('problem', data);
 
   return res;
 }

@@ -2,7 +2,6 @@ import { getUserDatasets, getUserProblems, getUserSubmissions } from '@/utils/da
 import { DatasetModel, ProblemModel } from '@/utils/models';
 import { useDynamicContext } from '@dynamic-labs/sdk-react-core';
 import { Badge, Card, Center, Flex, Group, ScrollArea, Title, Text } from '@mantine/core';
-import { pointer } from '@testing-library/user-event/dist/types/pointer';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
