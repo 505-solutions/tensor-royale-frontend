@@ -8,6 +8,7 @@ export interface ProblemModel {
   reward: number;
   solved: boolean;
   submissions_count: number;
+  has_dataset: boolean;
 }
 
 export interface DataModel {
@@ -22,4 +23,11 @@ export interface ModelTraining {
   problem_id: number | null;
   data_id: number | null;
   model: unknown; //nek natreniran model
+}
+
+export interface DatasetModel {
+  id: number;
+  problem: ProblemModel | null;
+  description: string;
+  file_url: string;
 }

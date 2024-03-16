@@ -20,9 +20,7 @@ export function ProblemsPage() {
               clicking the button on the right.
             </Text>
             <NavLink to="add">
-              <Button justify="center">
-                Add problem
-              </Button>
+              <Button justify="center">Add problem</Button>
             </NavLink>
           </Flex>
 

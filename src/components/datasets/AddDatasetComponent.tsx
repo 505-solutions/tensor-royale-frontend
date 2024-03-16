@@ -1,7 +1,9 @@
-import { Textarea, Group, Button, Select, FileInput } from '@mantine/core';
+import { Textarea, Group, Button, Select, FileInput, Title, Text } from '@mantine/core';
 import { useForm } from '@mantine/form';
 
-export function AddDatasetComponent() {
+export function AddDatasetComponent(props?: any) {
+  const { displayTitle } = props ?? false;
+
   const form = useForm({
     initialValues: {
       problem_id: 0, //should be one of the users problems
@@ -16,6 +18,15 @@ export function AddDatasetComponent() {
 
   return (
     <form onSubmit={form.onSubmit((values) => onFormSubmit(values))}>
+      {displayTitle ? (
+        <>
+          <Title order={2}>Add a dataset</Title>
+          <Text>You can add a dataset for one of your existing problems</Text>
+        </>
+      ) : (
+        <></>
+      )}
+
       <Select
         label="Problem"
         placeholder="Pick one of your problems to add dataset for it"

@@ -1,4 +1,4 @@
-import { ProblemModel } from './models';
+import { DatasetModel, ProblemModel } from './models';
 
 export const dummyProblems: ProblemModel[] = [
   {
@@ -10,6 +10,7 @@ export const dummyProblems: ProblemModel[] = [
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     reward: 69,
+    has_dataset: true,
     submissions_count: 12,
     solved: false,
   },
@@ -22,6 +23,7 @@ export const dummyProblems: ProblemModel[] = [
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     reward: 69,
+    has_dataset: false,
     submissions_count: 12,
     solved: false,
   },
@@ -34,6 +36,7 @@ export const dummyProblems: ProblemModel[] = [
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     reward: 69,
+    has_dataset: false,
     submissions_count: 12,
     solved: false,
   },
@@ -46,6 +49,7 @@ export const dummyProblems: ProblemModel[] = [
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     reward: 69,
+    has_dataset: true,
     submissions_count: 12,
     solved: true,
   },
@@ -59,6 +63,7 @@ export const dummyProblems: ProblemModel[] = [
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     reward: 69,
+    has_dataset: true,
     submissions_count: 12,
     solved: true,
   },
@@ -71,6 +76,7 @@ export const dummyProblems: ProblemModel[] = [
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     reward: 69,
+    has_dataset: true,
     submissions_count: 12,
     solved: true,
   },
@@ -83,7 +89,125 @@ export const dummyProblems: ProblemModel[] = [
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     reward: 69,
+    has_dataset: true,
     submissions_count: 12,
     solved: true,
+  },
+];
+
+export const dummyDatasets: DatasetModel[] = [
+  {
+    id: 0,
+    problem: {
+      id: 4,
+      user_address: 'ADDR1',
+      timestamp: 1710545142091,
+      deadline: 1710548142091,
+      title: 'Test problem 5',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      reward: 69,
+      has_dataset: true,
+      submissions_count: 12,
+      solved: true,
+    },
+    description:
+      'Dataset description about dataset data and info about models and files and all that',
+    file_url: 'testurl',
+  },
+  {
+    id: 1,
+    problem: {
+      id: 6,
+      user_address: 'ADDR1',
+      timestamp: 1710545142091,
+      deadline: 1710548142091,
+      title: 'Test problem 7',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      reward: 69,
+      has_dataset: true,
+      submissions_count: 12,
+      solved: true,
+    },
+    description:
+      'Dataset description about dataset data and info about models and files and all that',
+    file_url: 'testurl',
+  },
+  {
+    id: 2,
+    problem: {
+      id: 4,
+      user_address: 'ADDR1',
+      timestamp: 1710545142091,
+      deadline: 1710548142091,
+      title: 'Test problem 5',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      reward: 69,
+      has_dataset: true,
+      submissions_count: 12,
+      solved: true,
+    },
+    description:
+      'Dataset description about dataset data and info about models and files and all that',
+    file_url: 'testurl',
+  },
+  {
+    id: 3,
+    problem: {
+      id: 4,
+      user_address: 'ADDR1',
+      timestamp: 1710545142091,
+      deadline: 1710548142091,
+      title: 'Test problem 5',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      reward: 69,
+      has_dataset: true,
+      submissions_count: 12,
+      solved: true,
+    },
+    description:
+      'Dataset description about dataset data and info about models and files and all that',
+    file_url: 'testurl',
+  },
+  {
+    id: 4,
+    problem: {
+      id: 6,
+      user_address: 'ADDR1',
+      timestamp: 1710545142091,
+      deadline: 1710548142091,
+      title: 'Test problem 7',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      reward: 69,
+      has_dataset: true,
+      submissions_count: 12,
+      solved: true,
+    },
+    description:
+      'Dataset description about dataset data and info about models and files and all that',
+    file_url: 'testurl',
+  },
+  {
+    id: 5,
+    problem: {
+      id: 4,
+      user_address: 'ADDR1',
+      timestamp: 1710545142091,
+      deadline: 1710548142091,
+      title: 'Test problem 5',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      reward: 69,
+      has_dataset: true,
+      submissions_count: 12,
+      solved: true,
+    },
+    description:
+      'Dataset description about dataset data and info about models and files and all that',
+    file_url: 'testurl',
   },
 ];

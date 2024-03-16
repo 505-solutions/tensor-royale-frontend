@@ -1,5 +1,5 @@
 import '@mantine/core/styles.css';
-import { MantineProvider, AppShell, Text, Group, Button } from '@mantine/core';
+import { MantineProvider, AppShell, Text, Group, Button, Center, Flex } from '@mantine/core';
 import { NavLink, Route, Routes } from 'react-router-dom';
 
 import { theme } from './theme';
@@ -9,6 +9,8 @@ import { DataSetsPage } from './pages/DataSets.page';
 import { ModelsPage } from './pages/Models.page';
 import { LeaderboardPage } from './pages/Leaderboard.page';
 import { AddProblemComponent } from './components/problems/AddProblemComponent';
+import { AddDatasetComponent } from './components/datasets/AddDatasetComponent';
+import { ProblemDetailComponent } from './components/problems/ProblemDetailComponent';
 
 export default function App() {
   return (
@@ -57,6 +59,17 @@ export default function App() {
             <Route path="/models" element={<ModelsPage />} />
             <Route path="/leaderboard" element={<LeaderboardPage />} />
             <Route path="/problems/add" element={<AddProblemComponent />} />
+            <Route
+              path="/data-sets/add"
+              element={
+                <Center w="100vw">
+                  <Flex w="70vw" direction="column">
+                    <AddDatasetComponent displayTitle />
+                  </Flex>
+                </Center>
+              }
+            />
+            <Route path="/problems/detail/:id" element={<ProblemDetailComponent />}></Route>
           </Routes>
         </AppShell.Main>
       </AppShell>
