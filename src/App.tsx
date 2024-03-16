@@ -11,6 +11,7 @@ import { LeaderboardPage } from './pages/Leaderboard.page';
 import { AddProblemComponent } from './components/problems/AddProblemComponent';
 import { AddDatasetComponent } from './components/datasets/AddDatasetComponent';
 import { ProblemDetailComponent } from './components/problems/ProblemDetailComponent';
+import { AddProblemSubmissionComponent } from './components/problems/AddProblemSubmissionComponent';
 
 export default function App() {
   return (
@@ -59,6 +60,8 @@ export default function App() {
             <Route path="/models" element={<ModelsPage />} />
             <Route path="/leaderboard" element={<LeaderboardPage />} />
             <Route path="/problems/add" element={<AddProblemComponent />} />
+            <Route path="/problems/add-submission/:id" element={<AddProblemSubmissionComponent />} />
+
             <Route
               path="/data-sets/add"
               element={

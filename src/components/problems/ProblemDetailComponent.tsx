@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { Center, Flex, Badge, Card, Group, Text, Title, ScrollArea } from '@mantine/core';
+import { Link, useParams } from 'react-router-dom';
+import { Center, Flex, Badge, Card, Group, Text, Title, ScrollArea, Button } from '@mantine/core';
 import { IconCheck, IconX } from '@tabler/icons-react';
-import { dummyDatasets, dummyModels, dummyProblems } from '@/utils/dummy-data';
+import { dummyModels, dummyProblems } from '@/utils/dummy-data';
 import { ProblemModel } from '@/utils/models';
 import { getDate } from '@/utils/helper-functions';
 
@@ -63,8 +63,13 @@ export function ProblemDetailComponent() {
               </Text>
             </Flex>
           </Card>
+          <Group justify="space-between" pt="sm" pb="xs">
+            <Title order={2}>Submissions</Title>
+            <Link to={`../problems/add-submission/${problem?.id}`}>
+              <Button justify="center">Add submission</Button>
+            </Link>
+          </Group>
 
-          <Title order={2} pt="sm">Submissions</Title>
           <ScrollArea h="500px">
             {dummyModels
               .filter((ds) => ds.problem_id === problem?.id)
