@@ -27,6 +27,8 @@ export interface ModelTraining {
 
 export interface DatasetModel {
   id: number;
+  timestamp: number;
+  author: string;
   problem: ProblemModel | null;
   description: string;
   file_url: string;
