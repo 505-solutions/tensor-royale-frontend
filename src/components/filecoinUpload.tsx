@@ -1,0 +1,53 @@
+import { useState } from 'react';
+import lighthouse from '@lighthouse-web3/sdk'
+import { Button, FileInput, Progress, Stack } from '@mantine/core';
+
+function App() {
+    const [value, setValue] = useState<File[]>([]);
+    const [currentUpload, setCurrentUpload] = useState<number>(0);
+    const [progress, setProgress] = useState<number>(0);
+    const [output, setOutput] = useState<any>([]);
+
+
+  const progressCallback = (progressData) => {
+    let percentageDone =
+      100 - (progressData?.total / progressData?.uploaded)?.toFixed(2)
+    console.log(percentageDone)
+    setProgress(percentageDone);
+  }
+
+  const uploadFile = async(file) =>{
+    console.log(file)
+    // Push file to lighthouse node
+    // Both file and folder are supported by upload function
+    // Third parameter is for multiple files, if multiple files are to be uploaded at once make it true
+    // Fourth parameter is the deal parameters, default null
+    const output = await lighthouse.upload(file, "4414e711.bdd4d86b458941e98806bcfbb1f7d396", true, null, progressCallback)
+    console.log('File Status:', output.data[-1])
+    setProgress(100)
+    /*
+      output:
+        data: {
+          Name: "filename.txt",
+          Size: 88000,
+          Hash: "QmWNmn2gr4ZihNPqaC5oTeePsHvFtkWNpjY3cD6Fd5am1w"
+        }
+      Note: Hash in response is CID.
+    */
+
+      console.log('Visit at https://gateway.lighthouse.storage/ipfs/' + output.data.Hash)
+  }
+  const done = progress === 100;
+  return (
+    <div className="App" style={{maxWidth: 600, margin: 'auto', paddingTop: 50}}>
+    <Stack>
+            <FileInput label="Upload files" placeholder="Upload files" onChange={e => setValue(e)} multiple/>
+            {!done? <Progress transitionDuration={500} value={progress} />: "Upload complete ✅"}
+            <Button onClick={() => uploadFile(value)} disabled={progress !== 0}>{!done? "Upload" : "Upload complete"}</Button>
+        </Stack>
+
+    </div>
+  )
+}
+
+export default App

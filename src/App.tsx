@@ -8,6 +8,7 @@ import { ProblemsPage } from './pages/Problems.page';
 import { DataSetsPage } from './pages/DataSets.page';
 import { ModelsPage } from './pages/Models.page';
 import { LeaderboardPage } from './pages/Leaderboard.page';
+import FilecoinUpload from './components/filecoinUpload';
 
 export default function App() {
   return (
@@ -44,6 +45,12 @@ export default function App() {
                   Leaderboard
                 </Button>
               </NavLink>
+              <NavLink to="/filecoin">
+                <Button justify="center" variant="default" style={{ border: '0px' }}>
+                  Filecoin
+                </Button>
+              </NavLink>
+
             </Group>
           </Group>
         </AppShell.Header>
@@ -55,6 +62,7 @@ export default function App() {
             <Route path="/data-sets" element={<DataSetsPage />} />
             <Route path="/models" element={<ModelsPage />} />
             <Route path="/leaderboard" element={<LeaderboardPage />} />
+            <Route path="/filecoin" element={<FilecoinUpload />} />
           </Routes>
         </AppShell.Main>
       </AppShell>
