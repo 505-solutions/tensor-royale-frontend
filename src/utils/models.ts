@@ -6,6 +6,8 @@ export interface ProblemModel {
   title: string;
   description: string;
   reward: number;
+  solved: boolean;
+  submissions_count: number;
 }
 
 export interface DataModel {
