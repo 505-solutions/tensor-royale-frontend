@@ -2192,6 +2192,33 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@mantine/dates@npm:^7.6.2":
+  version: 7.6.2
+  resolution: "@mantine/dates@npm:7.6.2"
+  dependencies:
+    clsx: "npm:2.1.0"
+  peerDependencies:
+    "@mantine/core": 7.6.2
+    "@mantine/hooks": 7.6.2
+    dayjs: ">=1.0.0"
+    react: ^18.2.0
+    react-dom: ^18.2.0
+  checksum: 10c0/e695e61838a20d6bdada3f5f2c0872b5b05371a8e288de4ad6b0629ca09fde83d3dcdfee55b775611550db1cb140ca5771afe64cfe4eb57017d6802e6fe7323a
+  languageName: node
+  linkType: hard
+
+"@mantine/form@npm:^7.6.2":
+  version: 7.6.2
+  resolution: "@mantine/form@npm:7.6.2"
+  dependencies:
+    fast-deep-equal: "npm:^3.1.3"
+    klona: "npm:^2.0.6"
+  peerDependencies:
+    react: ^18.2.0
+  checksum: 10c0/784bfefdcebe5df8b44fa2e0d0a6a7ea9b7085053b989ce688bbdbebb001304158de08b2938c52dc9ba0227fc43239345c024d6e0027cdc9f9edfae066d829f9
+  languageName: node
+  linkType: hard
+
 "@mantine/hooks@npm:7.6.1":
   version: 7.6.1
   resolution: "@mantine/hooks@npm:7.6.1"
@@ -2409,6 +2436,13 @@ __metadata:
   version: 0.11.0
   resolution: "@pkgjs/parseargs@npm:0.11.0"
   checksum: 10c0/5bd7576bb1b38a47a7fc7b51ac9f38748e772beebc56200450c4a817d712232b8f1d3ef70532c80840243c657d491cf6a6be1e3a214cff907645819fdc34aadd
+  languageName: node
+  linkType: hard
+
+"@popperjs/core@npm:^2.11.8":
+  version: 2.11.8
+  resolution: "@popperjs/core@npm:2.11.8"
+  checksum: 10c0/4681e682abc006d25eb380d0cf3efc7557043f53b6aea7a5057d0d1e7df849a00e281cd8ea79c902a35a414d7919621fc2ba293ecec05f413598e0b23d5a1e63
   languageName: node
   linkType: hard
 
@@ -4035,6 +4069,95 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tabler/core@npm:1.0.0-beta20":
+  version: 1.0.0-beta20
+  resolution: "@tabler/core@npm:1.0.0-beta20"
+  dependencies:
+    "@popperjs/core": "npm:^2.11.8"
+    "@tabler/icons": "npm:^2.32.0"
+    bootstrap: "npm:5.3.1"
+  peerDependencies:
+    "@melloware/coloris": ^0.19.1
+    apexcharts: ^3.40.0
+    autosize: ^6.0.1
+    choices.js: ^10.2.0
+    countup.js: ^2.6.2
+    dropzone: ^6.0.0-beta.2
+    flatpickr: ^4.6.13
+    fslightbox: ^3.4.1
+    imask: ^6.6.1
+    jsvectormap: ^1.5.3
+    list.js: ^2.3.1
+    litepicker: ^2.0.12
+    nouislider: ^15.7.0
+    plyr: ^3.7.8
+    star-rating.js: ^4.3.0
+    tinymce: ^6.4.2
+    tom-select: ^2.2.2
+  peerDependenciesMeta:
+    "@melloware/coloris":
+      optional: true
+    apexcharts:
+      optional: true
+    autosize:
+      optional: true
+    choices.js:
+      optional: true
+    countup.js:
+      optional: true
+    dropzone:
+      optional: true
+    flatpickr:
+      optional: true
+    fslightbox:
+      optional: true
+    imask:
+      optional: true
+    jsvectormap:
+      optional: true
+    list.js:
+      optional: true
+    litepicker:
+      optional: true
+    nouislider:
+      optional: true
+    plyr:
+      optional: true
+    star-rating.js:
+      optional: true
+    tinymce:
+      optional: true
+    tom-select:
+      optional: true
+  checksum: 10c0/ac9eea3b38096b7852e8af197f4fd6b0c9adfb8a2e8349915c272e0fcc3729b5ef35713100351622b9e424524c11a996be24491d5dce76462d32dc4b11bbad80
+  languageName: node
+  linkType: hard
+
+"@tabler/icons-react@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "@tabler/icons-react@npm:3.1.0"
+  dependencies:
+    "@tabler/icons": "npm:3.1.0"
+  peerDependencies:
+    react: ">= 16"
+  checksum: 10c0/17a7972fe3ad1bc490d7e034407373d8346cad8788def68fc59e55be18501e45d958c40589f993ebcf04ac190884905b76c7d5dadd1cdffa36845e07d2393ef8
+  languageName: node
+  linkType: hard
+
+"@tabler/icons@npm:3.1.0":
+  version: 3.1.0
+  resolution: "@tabler/icons@npm:3.1.0"
+  checksum: 10c0/4c3ad1df8d58f126567ea3e2e9a5c59f8e4ecb6ad61d211652f029ad3d5aa721dedf925aa729c0190b552c2fd7922b3eee8eabea3e239273aa852261b74fe44b
+  languageName: node
+  linkType: hard
+
+"@tabler/icons@npm:^2.32.0":
+  version: 2.47.0
+  resolution: "@tabler/icons@npm:2.47.0"
+  checksum: 10c0/ffdffa1289ca958f7d7c06c19e35c51a664d916df510fb44fb673abc2031747f2b3c47e21ba4c1ca07a6872b793f2063179bbbfb6afd1c68b522ca333460a7f3
+  languageName: node
+  linkType: hard
+
 "@testing-library/dom@npm:^9.0.0, @testing-library/dom@npm:^9.3.4":
   version: 9.3.4
   resolution: "@testing-library/dom@npm:9.3.4"
@@ -5339,6 +5462,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bootstrap@npm:5.3.1":
+  version: 5.3.1
+  resolution: "bootstrap@npm:5.3.1"
+  peerDependencies:
+    "@popperjs/core": ^2.11.8
+  checksum: 10c0/e39e98bed1aa69e4eeb983252951cfb508fdde37b2f5941a7af2029f2ed43d77e53749464eb1e649e5fb1169eb4e2f68a7753dec3f32bfed5e2204478b348e14
+  languageName: node
+  linkType: hard
+
 "bplist-parser@npm:^0.2.0":
   version: 0.2.0
   resolution: "bplist-parser@npm:0.2.0"
@@ -5986,6 +6118,13 @@ __metadata:
     es-errors: "npm:^1.3.0"
     is-data-view: "npm:^1.0.1"
   checksum: 10c0/21b0d2e53fd6e20cc4257c873bf6d36d77bd6185624b84076c0a1ddaa757b49aaf076254006341d35568e89f52eecd1ccb1a502cfb620f2beca04f48a6a62a8f
+  languageName: node
+  linkType: hard
+
+"dayjs@npm:^1.11.10":
+  version: 1.11.10
+  resolution: "dayjs@npm:1.11.10"
+  checksum: 10c0/4de9af50639d47df87f2e15fa36bb07e0f9ed1e9c52c6caa1482788ee9a384d668f1dbd00c54f82aaab163db07d61d2899384b8254da3a9184fc6deca080e2fe
   languageName: node
   linkType: hard
 
@@ -8930,6 +9069,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"klona@npm:^2.0.6":
+  version: 2.0.6
+  resolution: "klona@npm:2.0.6"
+  checksum: 10c0/94eed2c6c2ce99f409df9186a96340558897b3e62a85afdc1ee39103954d2ebe1c1c4e9fe2b0952771771fa96d70055ede8b27962a7021406374fdb695fd4d01
+  languageName: node
+  linkType: hard
+
 "known-css-properties@npm:^0.29.0":
   version: 0.29.0
   resolution: "known-css-properties@npm:0.29.0"
@@ -9180,6 +9326,8 @@ __metadata:
   dependencies:
     "@lighthouse-web3/sdk": "npm:^0.3.0"
     "@mantine/core": "npm:7.6.1"
+    "@mantine/dates": "npm:^7.6.2"
+    "@mantine/form": "npm:^7.6.2"
     "@mantine/hooks": "npm:7.6.1"
     "@minoru/react-dnd-treeview": "npm:^3.4.4"
     "@storybook/addon-essentials": "npm:^8.0.0"
@@ -9189,6 +9337,8 @@ __metadata:
     "@storybook/react": "npm:^8.0.0"
     "@storybook/react-vite": "npm:^8.0.0"
     "@storybook/testing-library": "npm:^0.2.2"
+    "@tabler/core": "npm:1.0.0-beta20"
+    "@tabler/icons-react": "npm:^3.1.0"
     "@testing-library/dom": "npm:^9.3.4"
     "@testing-library/jest-dom": "npm:^6.4.2"
     "@testing-library/react": "npm:^14.2.1"
@@ -9198,6 +9348,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:^7.2.0"
     "@typescript-eslint/parser": "npm:^7.2.0"
     "@vitejs/plugin-react": "npm:^4.2.1"
+    dayjs: "npm:^1.11.10"
     eslint: "npm:^8.57.0"
     eslint-config-airbnb: "npm:19.0.4"
     eslint-config-airbnb-typescript: "npm:^18.0.0"

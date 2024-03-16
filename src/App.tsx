@@ -8,6 +8,7 @@ import { ProblemsPage } from './pages/Problems.page';
 import { DataSetsPage } from './pages/DataSets.page';
 import { ModelsPage } from './pages/Models.page';
 import { LeaderboardPage } from './pages/Leaderboard.page';
+import { AddProblemComponent } from './components/problems/AddProblemComponent';
 
 export default function App() {
   return (
@@ -55,6 +56,7 @@ export default function App() {
             <Route path="/data-sets" element={<DataSetsPage />} />
             <Route path="/models" element={<ModelsPage />} />
             <Route path="/leaderboard" element={<LeaderboardPage />} />
+            <Route path="/problems/add" element={<AddProblemComponent />} />
           </Routes>
         </AppShell.Main>
       </AppShell>
