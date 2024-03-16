@@ -1,4 +1,4 @@
-import { Textarea, Group, Button, Select, FileInput, Title, Text } from '@mantine/core';
+import { Textarea, Group, Button, Select, FileInput, Title, Text, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -24,6 +24,7 @@ export function AddDatasetComponent(props?: any) {
   const form = useForm({
     initialValues: {
       problem_id: id ? id.toString() : '', //should be one of the users problems
+      name: '',
       description: '',
       file: 0,
     },
@@ -53,6 +54,12 @@ export function AddDatasetComponent(props?: any) {
         value={id?.toString()}
         searchable
         {...form.getInputProps('problem_id')}
+      />
+
+      <TextInput
+        label="Name"
+        placeholder="Your dataset name"
+        {...form.getInputProps('name')}
       />
 
       <Textarea
