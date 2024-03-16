@@ -13,16 +13,55 @@ import { AddDatasetComponent } from './components/datasets/AddDatasetComponent';
 import { ProblemDetailComponent } from './components/problems/ProblemDetailComponent';
 import { AddProblemSubmissionComponent } from './components/problems/AddProblemSubmissionComponent';
 import { AddModelComponent } from './components/models/AddModelComponent';
+import FilecoinUpload from './components/filecoinUpload';
+
+import {
+  DynamicWidget,
+  DynamicContextProvider,
+} from "@dynamic-labs/sdk-react-core";
+
+import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
+import { StarknetWalletConnectors } from "@dynamic-labs/starknet";
+
+const evmNetworks = [
+  {
+    blockExplorerUrls: ['https://etherscan.io/'],
+    chainId: 314159,
+    chainName: 'Filecoin - Calibration testnet',
+    iconUrls: ['https://app.dynamic.xyz/assets/networks/eth.svg'],
+    name: 'Filecoin - Calibration testnet',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'Test FIL',
+      symbol: 'tFIL',
+    },
+    networkId: 314159,
+    
+    rpcUrls: ['https://rpc.ankr.com/filecoin_testnet'],
+    vanityName: 'Filecoin - Calibration teostnet',
+  },
+
+]
 
 export default function App() {
   return (
+    <DynamicContextProvider
+    settings={{
+      environmentId: "7af57577-b9bb-4503-b0c7-27da15986c8a",
+      walletConnectors: [EthereumWalletConnectors, StarknetWalletConnectors],
+      evmNetworks: evmNetworks,
+    }}
+>
+
     <MantineProvider theme={theme}>
       <AppShell>
+
         <AppShell.Header>
           <Group h="70px" px="md" justify="space-between">
             <Text size="xl" fw={700}>
               TensorRoyale
             </Text>
+
             <Group justify="center">
               <NavLink to="/">
                 <Button justify="center" variant="default" style={{ border: '0px' }}>
@@ -49,6 +88,13 @@ export default function App() {
                   Leaderboard
                 </Button>
               </NavLink>
+              <NavLink to="/filecoin">
+                <Button justify="center" variant="default" style={{ border: '0px' }}>
+                  Filecoin
+                </Button>
+              </NavLink>
+              <DynamicWidget />
+
             </Group>
           </Group>
         </AppShell.Header>
@@ -74,9 +120,12 @@ export default function App() {
               }
             />
             <Route path="/problems/detail/:id" element={<ProblemDetailComponent />}></Route>
+            <Route path="/filecoin" element={<FilecoinUpload />} />
           </Routes>
         </AppShell.Main>
       </AppShell>
     </MantineProvider>
+  </DynamicContextProvider>
+
   );
 }
