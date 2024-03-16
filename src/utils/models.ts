@@ -51,3 +51,8 @@ export interface ActiveModel {
   input_parameters: 'image' | 'object';
   onchain: boolean;
 }
+
+export interface LeaderboardEntryModel {
+  user: string;
+  points: number;
+}
