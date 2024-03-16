@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import lighthouse from '@lighthouse-web3/sdk'
 import { Button, FileInput, Progress, Stack } from '@mantine/core';
 
@@ -7,6 +7,21 @@ function App() {
     const [currentUpload, setCurrentUpload] = useState<number>(0);
     const [progress, setProgress] = useState<number>(0);
     const [output, setOutput] = useState<any>([]);
+    const [priceEstimate, setPriceEstimate] = useState<BigInt>(BigInt(0));
+
+    useEffect(() => {
+        const estimatePrice = async () => {
+            let price = await lighthouse.getPrice(value, "calibration", "usdc")
+            console.log(price)
+            const regex = /\d+/g;
+            const numericPart = price.toString().match(regex)?.join('');
+            console.log(numericPart);
+            setPriceEstimate(BigInt(numericPart!) / BigInt("1000000000000000"));
+        }
+        if (value.length > 0) {
+            estimatePrice();
+        }
+    }, [value])
 
 
   const progressCallback = (progressData) => {
@@ -42,6 +57,7 @@ function App() {
     <div className="App" style={{maxWidth: 600, margin: 'auto', paddingTop: 50}}>
     <Stack>
             <FileInput label="Upload files" placeholder="Upload files" onChange={e => setValue(e)} multiple/>
+            <p>Estimated cost: {(Number(priceEstimate))/1000} USDC</p>
             {!done? <Progress transitionDuration={500} value={progress} />: "Upload complete ✅"}
             <Button onClick={() => uploadFile(value)} disabled={progress !== 0}>{!done? "Upload" : "Upload complete"}</Button>
         </Stack>
