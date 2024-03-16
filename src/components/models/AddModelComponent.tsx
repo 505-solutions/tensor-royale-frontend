@@ -1,13 +1,7 @@
 import { Center, Flex, Title, Textarea, Group, Button, Text, FileInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { Link, useParams } from 'react-router-dom';
-import { getProblemById } from '@/utils/data-connections';
 
-export function AddProblemSubmissionComponent() {
-  const { id } = useParams();
-
-  const problem = getProblemById(+id!);
-
+export function AddModelComponent() {
   const form = useForm({
     initialValues: {
       title: '',
@@ -26,12 +20,12 @@ export function AddProblemSubmissionComponent() {
       <Center w="100vw">
         <Flex w="70vw" direction="column">
           <Title order={2} pt="sm">
-            Add a submission
+            Add a new model
           </Title>
 
           <Text mb="sm">
-            You are adding a submission for:{' '}
-            <Link to={`../problems/detail/${problem?.id}`}>{problem?.title}</Link>
+            You can submit a new model for our platform here. Make sure to specify the purpuse of
+            your AI model, as well as its inputs and outputs.
           </Text>
           <form onSubmit={form.onSubmit((values: any) => onFormSubmit(values))}>
             <Textarea

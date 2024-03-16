@@ -1,4 +1,4 @@
-import { DatasetModel, ModelTraining, ProblemModel } from './models';
+import { ActiveModel, DatasetModel, ModelTraining, ProblemModel } from './models';
 
 export const dummyProblems: ProblemModel[] = [
   {
@@ -324,5 +324,98 @@ export const dummyModels: ModelTraining[] = [
     size: '230MB',
     data_id: undefined,
     description: 'Description of the model that someone submitted',
+  },
+];
+
+export const dummyActiveModels: ActiveModel[] = [
+  {
+    id: 1,
+    author: '0xbdd01feeD4EFDE1CeACC502E60E40bea1CDa8AFB',
+    name: 'My Model',
+    description: 'This is a sample model',
+    icon_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/1200px-ChatGPT_logo.svg.png',
+    input_parameters: 'image',
+    onchain: true,
+  },
+  {
+    id: 2,
+    author: '0x0123456789abcdef0123456789abcdef01234567',
+    name: 'Another Model',
+    description: 'A different sample model',
+    icon_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/1200px-ChatGPT_logo.svg.png',
+    input_parameters: 'object',
+    onchain: false,
+  },
+  {
+    id: 3,
+    author: '0x89abcdef0123456789abcdef0123456789abcdef',
+    name: 'Yet Another Model',
+    description: 'Yet another sample model',
+    icon_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/1200px-ChatGPT_logo.svg.png',
+    input_parameters: 'image',
+    onchain: true,
+  },
+  {
+    id: 4,
+    author: '0x23456789abcdef0123456789abcdef0123456789',
+    name: 'Model 4',
+    description: 'Description 4',
+    icon_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/1200px-ChatGPT_logo.svg.png',
+    input_parameters: 'object',
+    onchain: false,
+  },
+  {
+    id: 5,
+    author: '0x3456789abcdef0123456789abcdef0123456789a',
+    name: 'Model 5',
+    description: 'Description 5',
+    icon_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/1200px-ChatGPT_logo.svg.png',
+    input_parameters: 'image',
+    onchain: true,
+  },
+  {
+    id: 6,
+    author: '0x456789abcdef0123456789abcdef0123456789ab',
+    name: 'Model 6',
+    description: 'Description 6',
+    icon_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/1200px-ChatGPT_logo.svg.png',
+    input_parameters: 'object',
+    onchain: false,
+  },
+  {
+    id: 7,
+    author: '0x56789abcdef0123456789abcdef0123456789abc',
+    name: 'Model 7',
+    description: 'Description 7',
+    icon_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/1200px-ChatGPT_logo.svg.png',
+    input_parameters: 'image',
+    onchain: true,
+  },
+  {
+    id: 8,
+    author: '0x6789abcdef0123456789abcdef0123456789abcd',
+    name: 'Model 8',
+    description: 'Description 8',
+    icon_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/1200px-ChatGPT_logo.svg.png',
+    input_parameters: 'object',
+    onchain: false,
+  },
+  {
+    id: 9,
+    author: '0x789abcdef0123456789abcdef0123456789abcde',
+    name: 'Model 9',
+    description: 'Description 9 ;laksfoliajf;da pa;sma FLASMFALDSKASKdadaSKDASMDAMSDASM APKSDADDSDASDALASDASD ADA DLKASD AS D',
+    icon_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/1200px-ChatGPT_logo.svg.png',
+    input_parameters: 'image',
+    onchain: true,
+  },
+  {
+    id: 10,
+    author: '0x89abcdef0123456789abcdef0123456789abcdef0',
+    name: 'Model 10',
+    description: 'Description 10',
+    icon_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/1200px-ChatGPT_logo.svg.png',
+    input_parameters: 'object',
+    onchain: false,
   },
 ];

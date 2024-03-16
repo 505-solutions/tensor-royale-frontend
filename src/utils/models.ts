@@ -41,3 +41,13 @@ export interface DatasetModel {
   file_url: string;
   size?: string;
 }
+
+export interface ActiveModel {
+  id: number;
+  author: string;
+  name: string;
+  description: string;
+  icon_url: string;
+  input_parameters: 'image' | 'object';
+  onchain: boolean;
+}
