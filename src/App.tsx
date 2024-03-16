@@ -10,15 +10,31 @@ import { ModelsPage } from './pages/Models.page';
 import { LeaderboardPage } from './pages/Leaderboard.page';
 import FilecoinUpload from './components/filecoinUpload';
 
+import {
+  DynamicWidget,
+  DynamicContextProvider,
+} from "@dynamic-labs/sdk-react-core";
+
+import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
+
 export default function App() {
   return (
+    <DynamicContextProvider
+    settings={{
+      environmentId: "7af57577-b9bb-4503-b0c7-27da15986c8a",
+      walletConnectors: [EthereumWalletConnectors],
+    }}
+>
+
     <MantineProvider theme={theme}>
       <AppShell>
+
         <AppShell.Header>
           <Group h="70px" px="md" justify="space-between">
             <Text size="xl" fw={700}>
               TensorRoyale
             </Text>
+
             <Group justify="center">
               <NavLink to="/">
                 <Button justify="center" variant="default" style={{ border: '0px' }}>
@@ -50,6 +66,7 @@ export default function App() {
                   Filecoin
                 </Button>
               </NavLink>
+              <DynamicWidget />
 
             </Group>
           </Group>
@@ -67,5 +84,7 @@ export default function App() {
         </AppShell.Main>
       </AppShell>
     </MantineProvider>
+  </DynamicContextProvider>
+
   );
 }

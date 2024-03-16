@@ -19,6 +19,7 @@
     "storybook:build": "storybook build"
   },
   "dependencies": {
+    "@dynamic-labs/ethereum-aa": "^1.0.4",
     "@lighthouse-web3/sdk": "^0.3.0",
     "@mantine/core": "7.6.1",
     "@mantine/hooks": "7.6.1",
@@ -26,9 +27,12 @@
     "react": "^18.2.0",
     "react-dnd": "^16.0.1",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.3"
+    "react-router-dom": "^6.22.3",
+    "vite": "^4.4.5"
   },
   "devDependencies": {
+    "@dynamic-labs/ethereum": "*",
+    "@dynamic-labs/sdk-react-core": "*",
     "@storybook/addon-essentials": "^8.0.0",
     "@storybook/addon-interactions": "^8.0.0",
     "@storybook/addon-links": "^8.0.0",
@@ -65,7 +69,6 @@
     "stylelint": "^16.2.1",
     "stylelint-config-standard-scss": "^13.0.0",
     "typescript": "^5.4.2",
-    "vite": "^5.1.6",
     "vite-tsconfig-paths": "^4.3.1",
     "vitest": "^1.3.1"
   },
