@@ -52,10 +52,8 @@ export async function postDataset(model: any) {
     problem_id: model.problem_id,
   };
 
-  console.log(data);
-
   const res = await instance.post('data/create', data);
-  console.log(res);
+  return res;
 }
 
 export async function postSubmission(model: any) {
@@ -68,11 +66,10 @@ export async function postSubmission(model: any) {
   };
 
   const res = await instance.post('models/create', data);
-  console.log(res);
+  return res;
 }
 
 export async function getProblemSubmissions(id: number) {
   const res = await instance.post('models', { problem_id: id });
-  console.log(res);
   return res;
 }

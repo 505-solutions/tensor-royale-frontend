@@ -16,7 +16,6 @@ export function ProblemDetailComponent() {
     if (id) {
       getProblemById(+id).then((resp) => setProblem(resp));
       getProblemSubmissions(+id).then((resp) => {
-        console.log('submissions:  ', resp);
         setSubmissions(resp.data);
       });
     }

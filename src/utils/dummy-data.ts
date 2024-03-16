@@ -1,10 +1,4 @@
-import {
-  ActiveModel,
-  LeaderboardEntryModel,
-} from './models';
-
-
-
+import { ActiveModel, LeaderboardEntryModel } from './models';
 
 export const dummyActiveModels: ActiveModel[] = [
   {

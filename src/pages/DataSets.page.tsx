@@ -10,7 +10,6 @@ export function DataSetsPage() {
 
   useEffect(() => {
     getDatasets().then((res) => {
-      console.log(res);
       const d = res.data.map((ds: any, key: any) => (
         <DatasetItemComponent dataset={ds} key={key} />
       ));
