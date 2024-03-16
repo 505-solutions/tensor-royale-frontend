@@ -94,7 +94,7 @@ function App() {
             {!done? <Progress transitionDuration={500} value={progress} />: ""}
             
             <Button loading={loading} onClick={() => uploadFile(value)} disabled={progress !== 0}>{!done? "Upload" : "Upload complete"}</Button>
-            {<Text style={{textAlign: 'center'}}><b>{steps[stepIndex]}</b><br></br><small>Estimated cost: ~{(Number(priceEstimate))/1000} USDC</small></Text>}
+            {<Text style={{textAlign: 'center'}}><b>{steps[stepIndex]}</b><br></br><small>Estimated cost: ~ {(Number(priceEstimate))/1000} USDC</small></Text>}
             {output && output.data && <List
                   spacing="xs"
                   size="sm"
