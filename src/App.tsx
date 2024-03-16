@@ -16,13 +16,35 @@ import {
 } from "@dynamic-labs/sdk-react-core";
 
 import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
+import { StarknetWalletConnectors } from "@dynamic-labs/starknet";
+
+const evmNetworks = [
+  {
+    blockExplorerUrls: ['https://etherscan.io/'],
+    chainId: 314159,
+    chainName: 'Filecoin - Calibration testnet',
+    iconUrls: ['https://app.dynamic.xyz/assets/networks/eth.svg'],
+    name: 'Filecoin - Calibration testnet',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'Test FIL',
+      symbol: 'tFIL',
+    },
+    networkId: 314159,
+    
+    rpcUrls: ['https://rpc.ankr.com/filecoin_testnet'],
+    vanityName: 'Filecoin - Calibration teostnet',
+  },
+
+]
 
 export default function App() {
   return (
     <DynamicContextProvider
     settings={{
       environmentId: "7af57577-b9bb-4503-b0c7-27da15986c8a",
-      walletConnectors: [EthereumWalletConnectors],
+      walletConnectors: [EthereumWalletConnectors, StarknetWalletConnectors],
+      evmNetworks: evmNetworks,
     }}
 >
 
