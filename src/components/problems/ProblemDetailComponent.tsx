@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Center, Flex, Badge, Card, Group, Text, Title, ScrollArea } from '@mantine/core';
 import { IconCheck, IconX } from '@tabler/icons-react';
-import { dummyProblems } from '@/utils/dummy-data';
+import { dummyDatasets, dummyModels, dummyProblems } from '@/utils/dummy-data';
 import { ProblemModel } from '@/utils/models';
 import { getDate } from '@/utils/helper-functions';
 
@@ -31,6 +31,7 @@ export function ProblemDetailComponent() {
             radius="md"
             withBorder
             mb="4px"
+            mt="md"
             style={{ cursor: 'pointer' }}
           >
             <Group justify="space-between" mt="md" mb="xs">
@@ -62,9 +63,20 @@ export function ProblemDetailComponent() {
               </Text>
             </Flex>
           </Card>
-          <Title order={2}>Submissions</Title>
-          <ScrollArea>
-            {}
+
+          <Title order={2} pt="sm">Submissions</Title>
+          <ScrollArea h="500px">
+            {dummyModels
+              .filter((ds) => ds.problem_id === problem?.id)
+              .map((ds) => (
+                <Card shadow="sm" padding="lg" radius="md" withBorder mb="4px">
+                  <Group justify="space-between" mt="md" mb="xs">
+                    <Text fw={600}>Author:{ds?.author}</Text>
+                    <Badge color="green">{ds.size}</Badge>
+                  </Group>
+                  <Text size="sm">{ds?.description}</Text>
+                </Card>
+              ))}
           </ScrollArea>
         </Flex>
       </Center>

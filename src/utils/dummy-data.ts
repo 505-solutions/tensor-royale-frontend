@@ -1,4 +1,4 @@
-import { DatasetModel, ProblemModel } from './models';
+import { DatasetModel, ModelTraining, ProblemModel } from './models';
 
 export const dummyProblems: ProblemModel[] = [
   {
@@ -114,6 +114,8 @@ export const dummyDatasets: DatasetModel[] = [
     description:
       'Dataset description about dataset data and info about models and files and all that',
     file_url: 'testurl',
+    timestamp: 171054514000,
+    author: '0x0123-9-12039-120393',
   },
   {
     id: 1,
@@ -133,6 +135,8 @@ export const dummyDatasets: DatasetModel[] = [
     description:
       'Dataset description about dataset data and info about models and files and all that',
     file_url: 'testurl',
+    timestamp: 171054514000,
+    author: '0x0123-9-12039-120393',
   },
   {
     id: 2,
@@ -152,6 +156,8 @@ export const dummyDatasets: DatasetModel[] = [
     description:
       'Dataset description about dataset data and info about models and files and all that',
     file_url: 'testurl',
+    timestamp: 171054514000,
+    author: '0x0123-9-12039-120393',
   },
   {
     id: 3,
@@ -171,6 +177,8 @@ export const dummyDatasets: DatasetModel[] = [
     description:
       'Dataset description about dataset data and info about models and files and all that',
     file_url: 'testurl',
+    timestamp: 171054514000,
+    author: '0x0123-9-12039-120393',
   },
   {
     id: 4,
@@ -190,6 +198,8 @@ export const dummyDatasets: DatasetModel[] = [
     description:
       'Dataset description about dataset data and info about models and files and all that',
     file_url: 'testurl',
+    timestamp: 171054514000,
+    author: '0x0123-9-12039-120393',
   },
   {
     id: 5,
@@ -209,5 +219,110 @@ export const dummyDatasets: DatasetModel[] = [
     description:
       'Dataset description about dataset data and info about models and files and all that',
     file_url: 'testurl',
+    timestamp: 171054514000,
+    author: '0x0123-9-12039-120393',
+  },
+];
+
+export const dummyModels: ModelTraining[] = [
+  {
+    id: 0,
+    author: '0x3413-1203-1023',
+    timestamp: 171054514000,
+    problem_id: 1,
+    model: 'url do modela',
+    size: '230MB',
+    data_id: undefined,
+    description: 'Description of the model that someone submitted',
+  },
+  {
+    id: 1,
+    author: '0x3413-1203-1023',
+    timestamp: 171054514000,
+    problem_id: 2,
+    model: 'url do modela',
+    size: '230MB',
+    data_id: undefined,
+    description: 'Description of the model that someone submitted',
+  },
+  {
+    id: 2,
+    author: '0x3413-1203-1023',
+    timestamp: 171054514000,
+    problem_id: 0,
+    model: 'url do modela',
+    size: '230MB',
+    data_id: undefined,
+    description: 'Description of the model that someone submitted',
+  },
+  {
+    id: 3,
+    author: '0x3413-1203-1023',
+    timestamp: 171054514000,
+    problem_id: 1,
+    model: 'url do modela',
+    size: '230MB',
+    data_id: undefined,
+    description: 'Description of the model that someone submitted',
+  },
+  {
+    id: 4,
+    author: '0x3413-1203-1023',
+    timestamp: 171054514000,
+    problem_id: 4,
+    model: 'url do modela',
+    size: '230MB',
+    data_id: undefined,
+    description: 'Description of the model that someone submitted',
+  },
+  {
+    id: 5,
+    author: '0x3413-1203-1023',
+    timestamp: 171054514000,
+    problem_id: 5,
+    model: 'url do modela',
+    size: '230MB',
+    data_id: undefined,
+    description: 'Description of the model that someone submitted',
+  },
+  {
+    id: 6,
+    author: '0x3413-1203-1023',
+    timestamp: 171054514000,
+    problem_id: 0,
+    model: 'url do modela',
+    size: '230MB',
+    data_id: undefined,
+    description: 'Description of the model that someone submitted',
+  },
+  {
+    id: 7,
+    author: '0x3413-1203-1023',
+    timestamp: 171054514000,
+    problem_id: 1,
+    model: 'url do modela',
+    size: '230MB',
+    data_id: undefined,
+    description: 'Description of the model that someone submitted',
+  },
+  {
+    id: 8,
+    author: '0x3413-1203-1023',
+    timestamp: 171054514000,
+    problem_id: 2,
+    model: 'url do modela',
+    size: '230MB',
+    data_id: undefined,
+    description: 'Description of the model that someone submitted',
+  },
+  {
+    id: 9,
+    author: '0x3413-1203-1023',
+    timestamp: 171054514000,
+    problem_id: 3,
+    model: 'url do modela',
+    size: '230MB',
+    data_id: undefined,
+    description: 'Description of the model that someone submitted',
   },
 ];
