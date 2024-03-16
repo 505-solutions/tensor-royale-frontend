@@ -15,20 +15,21 @@ export function ProfilePage() {
   const [problems, setProblems] = useState([]);
 
   useEffect(() => {
-    getUserProblems(primaryWallet?.address!).then((res) => {
-      console.log('user result', res);
-      setProblems(res.data);
-    });
-    getUserDatasets(primaryWallet?.address!).then((res) => {
-      console.log('datasets result', res);
-      setDatasets(res.data);
-    });
+    if (primaryWallet?.address === undefined) {
+      console.log('nope');
+    } else {
+      getUserProblems(primaryWallet?.address !).then((res) => {
+        setProblems(res.data);
+      });
+      getUserDatasets(primaryWallet?.address !).then((res) => {
+        setDatasets(res.data);
+      });
 
-    getUserSubmissions(primaryWallet?.address!).then((res) => {
-      console.log('submissions result', res);
-      setSubmissions(res.data);
-    });
-  }, []);
+      getUserSubmissions(primaryWallet?.address !).then((res) => {
+        setSubmissions(res.data);
+      });
+    }
+  }, [primaryWallet?.address]);
 
   function cardClick(url: string) {
     navigate(url);
