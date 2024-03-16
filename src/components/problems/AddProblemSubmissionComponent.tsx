@@ -15,8 +15,11 @@ import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getProblemById, getProblemDatasets, postSubmission } from '@/utils/data-connections';
 import { ProblemModel } from '@/utils/models';
+import { useDynamicContext } from '@dynamic-labs/sdk-react-core';
 
 export function AddProblemSubmissionComponent() {
+  const { primaryWallet } = useDynamicContext();
+
   const { id } = useParams();
 
   const [problem, setProblem] = useState<ProblemModel | undefined>(undefined);
@@ -44,6 +47,7 @@ export function AddProblemSubmissionComponent() {
   });
 
   function onFormSubmit(data: any) {
+    data.author = primaryWallet.address;
     postSubmission(data);
   }
 

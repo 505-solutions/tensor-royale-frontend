@@ -2,14 +2,19 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Center, Flex, Badge, Card, Group, Text, Title, ScrollArea, Button } from '@mantine/core';
 import { IconCheck, IconX } from '@tabler/icons-react';
-import { ModelTraining, ProblemModel } from '@/utils/models';
+import { DatasetModel, ModelTraining, ProblemModel } from '@/utils/models';
 import { getDate } from '@/utils/helper-functions';
-import { getProblemById, getProblemSubmissions } from '@/utils/data-connections';
+import {
+  getProblemById,
+  getProblemDatasets,
+  getProblemSubmissions,
+} from '@/utils/data-connections';
 
 export function ProblemDetailComponent() {
   const { id } = useParams();
 
   const [submissions, setSubmissions] = useState([]);
+  const [datasets, setDatasets] = useState([]);
   const [problem, setProblem] = useState<ProblemModel | undefined>(undefined);
 
   useEffect(() => {
@@ -17,6 +22,9 @@ export function ProblemDetailComponent() {
       getProblemById(+id).then((resp) => setProblem(resp));
       getProblemSubmissions(+id).then((resp) => {
         setSubmissions(resp.data);
+      });
+      getProblemDatasets(+id).then((resp) => {
+        setDatasets(resp.data);
       });
     }
   }, []);
@@ -63,6 +71,26 @@ export function ProblemDetailComponent() {
               </Text>
             </Flex>
           </Card>
+
+          <Group justify="space-between" pt="sm" pb="xs">
+            <Title order={2}>Datasets</Title>
+            <Link to={`../data-sets/add/${problem?.id}`}>
+              <Button justify="center">Add dataset</Button>
+            </Link>
+          </Group>
+
+          <ScrollArea mah="500px">
+            {datasets.map((ds: DatasetModel) => (
+              <Card shadow="sm" padding="lg" radius="md" withBorder mb="4px">
+                <Group justify="space-between" mt="md" mb="xs">
+                  <Text fw={600}>Author:{ds?.author}</Text>
+                  <Badge color="green">{ds.size ?? '?'}MB</Badge>
+                </Group>
+                <Text size="sm">{ds?.description}</Text>
+              </Card>
+            ))}
+          </ScrollArea>
+
           <Group justify="space-between" pt="sm" pb="xs">
             <Title order={2}>Submissions</Title>
             <Link to={`../problems/add-submission/${problem?.id}`}>
@@ -71,16 +99,15 @@ export function ProblemDetailComponent() {
           </Group>
 
           <ScrollArea h="500px">
-            {submissions
-              .map((ds: ModelTraining) => (
-                <Card shadow="sm" padding="lg" radius="md" withBorder mb="4px">
-                  <Group justify="space-between" mt="md" mb="xs">
-                    <Text fw={600}>Author:{ds?.author}</Text>
-                    <Badge color="green">{ds.size ?? '?'}MB</Badge>
-                  </Group>
-                  <Text size="sm">{ds?.description}</Text>
-                </Card>
-              ))}
+            {submissions.map((ds: ModelTraining) => (
+              <Card shadow="sm" padding="lg" radius="md" withBorder mb="4px">
+                <Group justify="space-between" mt="md" mb="xs">
+                  <Text fw={600}>Author:{ds?.author}</Text>
+                  <Badge color="green">{ds.size ?? '?'}MB</Badge>
+                </Group>
+                <Text size="sm">{ds?.description}</Text>
+              </Card>
+            ))}
           </ScrollArea>
         </Flex>
       </Center>

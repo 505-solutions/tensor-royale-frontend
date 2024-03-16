@@ -1,5 +1,5 @@
 export interface ProblemModel {
-  id: number;
+  id?: number;
   user_address: string;
   timestamp: number;
   deadline: number;
@@ -16,6 +16,7 @@ export interface DataModel {
   id: number;
   name: string;
   timestamp: number;
+  author: string;
   file_train: unknown; // nek zip file
   description: string;
   problem_id: number | null;

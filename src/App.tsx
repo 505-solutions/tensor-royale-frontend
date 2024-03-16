@@ -15,13 +15,12 @@ import { AddProblemSubmissionComponent } from './components/problems/AddProblemS
 import { AddModelComponent } from './components/models/AddModelComponent';
 import FilecoinUpload from './components/filecoinUpload';
 
-import {
-  DynamicWidget,
-  DynamicContextProvider,
-} from "@dynamic-labs/sdk-react-core";
+import { DynamicWidget, DynamicContextProvider } from '@dynamic-labs/sdk-react-core';
 
-import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
-import { StarknetWalletConnectors } from "@dynamic-labs/starknet";
+import { EthereumWalletConnectors } from '@dynamic-labs/ethereum';
+import { StarknetWalletConnectors } from '@dynamic-labs/starknet';
+import { IconUser } from '@tabler/icons-react';
+import { ProfilePage } from './pages/Profile.page';
 
 const evmNetworks = [
   {
@@ -36,96 +35,109 @@ const evmNetworks = [
       symbol: 'tFIL',
     },
     networkId: 314159,
-    
+
     rpcUrls: ['https://rpc.ankr.com/filecoin_testnet'],
     vanityName: 'Filecoin - Calibration teostnet',
   },
-
-]
+];
 
 export default function App() {
   return (
     <DynamicContextProvider
-    settings={{
-      environmentId: "7af57577-b9bb-4503-b0c7-27da15986c8a",
-      walletConnectors: [EthereumWalletConnectors, StarknetWalletConnectors],
-      evmNetworks: evmNetworks,
-    }}
->
+      settings={{
+        environmentId: '7af57577-b9bb-4503-b0c7-27da15986c8a',
+        walletConnectors: [EthereumWalletConnectors, StarknetWalletConnectors],
+        evmNetworks: evmNetworks,
+      }}
+    >
+      <MantineProvider theme={theme}>
+        <AppShell>
+          <AppShell.Header>
+            <Group h="70px" px="md" justify="space-between">
+              <Text size="xl" fw={700}>
+                TensorRoyale
+              </Text>
 
-    <MantineProvider theme={theme}>
-      <AppShell>
-
-        <AppShell.Header>
-          <Group h="70px" px="md" justify="space-between">
-            <Text size="xl" fw={700}>
-              TensorRoyale
-            </Text>
-
-            <Group justify="center">
-              <NavLink to="/">
-                <Button justify="center" variant="default" style={{ border: '0px' }}>
-                  Home
-                </Button>
-              </NavLink>
-              <NavLink to="/problems">
-                <Button justify="center" variant="default" style={{ border: '0px' }}>
-                  Problems
-                </Button>
-              </NavLink>
-              <NavLink to="/data-sets">
-                <Button justify="center" variant="default" style={{ border: '0px' }}>
-                  Data sets
-                </Button>
-              </NavLink>
-              <NavLink to="/models">
-                <Button justify="center" variant="default" style={{ border: '0px' }}>
-                  Models
-                </Button>
-              </NavLink>
-              <NavLink to="/leaderboard">
-                <Button justify="center" variant="default" style={{ border: '0px' }}>
-                  Leaderboard
-                </Button>
-              </NavLink>
-              <NavLink to="/filecoin">
-                <Button justify="center" variant="default" style={{ border: '0px' }}>
-                  Filecoin
-                </Button>
-              </NavLink>
-              <DynamicWidget />
-
+              <Group justify="center">
+                <NavLink to="/">
+                  <Button justify="center" variant="default" style={{ border: '0px' }}>
+                    Home
+                  </Button>
+                </NavLink>
+                <NavLink to="/problems">
+                  <Button justify="center" variant="default" style={{ border: '0px' }}>
+                    Problems
+                  </Button>
+                </NavLink>
+                <NavLink to="/data-sets">
+                  <Button justify="center" variant="default" style={{ border: '0px' }}>
+                    Data sets
+                  </Button>
+                </NavLink>
+                <NavLink to="/models">
+                  <Button justify="center" variant="default" style={{ border: '0px' }}>
+                    Models
+                  </Button>
+                </NavLink>
+                <NavLink to="/leaderboard">
+                  <Button justify="center" variant="default" style={{ border: '0px' }}>
+                    Leaderboard
+                  </Button>
+                </NavLink>
+                <NavLink to="/filecoin">
+                  <Button justify="center" variant="default" style={{ border: '0px' }}>
+                    Filecoin
+                  </Button>
+                </NavLink>
+                <DynamicWidget />
+                <NavLink to="/profile">
+                  <IconUser />
+                </NavLink>
+              </Group>
             </Group>
-          </Group>
-        </AppShell.Header>
+          </AppShell.Header>
 
-        <AppShell.Main pt="70px">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/problems" element={<ProblemsPage />} />
-            <Route path="/data-sets" element={<DataSetsPage />} />
-            <Route path="/models" element={<ModelsPage />} />
-            <Route path="/leaderboard" element={<LeaderboardPage />} />
-            <Route path="/problems/add" element={<AddProblemComponent />} />
-            <Route path="/problems/add-submission/:id" element={<AddProblemSubmissionComponent />} />
-            <Route path="/models/add" element={<AddModelComponent />} />
-            <Route
-              path="/data-sets/add"
-              element={
-                <Center w="100vw">
-                  <Flex w="70vw" direction="column">
-                    <AddDatasetComponent displayTitle />
-                  </Flex>
-                </Center>
-              }
-            />
-            <Route path="/problems/detail/:id" element={<ProblemDetailComponent />}></Route>
-            <Route path="/filecoin" element={<FilecoinUpload />} />
-          </Routes>
-        </AppShell.Main>
-      </AppShell>
-    </MantineProvider>
-  </DynamicContextProvider>
+          <AppShell.Main pt="70px">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/problems" element={<ProblemsPage />} />
+              <Route path="/data-sets" element={<DataSetsPage />} />
+              <Route path="/models" element={<ModelsPage />} />
+              <Route path="/leaderboard" element={<LeaderboardPage />} />
+              <Route path="/problems/add" element={<AddProblemComponent />} />
+              <Route
+                path="/problems/add-submission/:id"
+                element={<AddProblemSubmissionComponent />}
+              />
+              <Route path="/models/add" element={<AddModelComponent />} />
+              <Route
+                path="/data-sets/add"
+                element={
+                  <Center w="100vw">
+                    <Flex w="70vw" direction="column">
+                      <AddDatasetComponent displayTitle />
+                    </Flex>
+                  </Center>
+                }
+              />
+              <Route
+                path="/data-sets/add/:id"
+                element={
+                  <Center w="100vw">
+                    <Flex w="70vw" direction="column">
+                      <AddDatasetComponent displayTitle />
+                    </Flex>
+                  </Center>
+                }
+              />
+              <Route path="/problems/detail/:id" element={<ProblemDetailComponent />}></Route>
+              <Route path="/filecoin" element={<FilecoinUpload />} />
+              <Route path="/profile" element={<ProfilePage />} />
 
+            </Routes>
+          </AppShell.Main>
+        </AppShell>
+      </MantineProvider>
+    </DynamicContextProvider>
   );
 }

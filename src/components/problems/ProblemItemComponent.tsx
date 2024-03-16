@@ -38,9 +38,18 @@ export function ProblemItemComponent(props: any) {
             )}
           </Group>
 
-          <Text size="sm">{problem.description}</Text>
+          <Flex direction="row" justify="space-between" align="center" pt="md">
+            <Text size="sm">{problem.description}</Text>
+            <Flex>
+              <Text mr="xs">Reward: </Text>
+              <Text fw={600}>{problem.reward}USDC</Text>
+            </Flex>
+          </Flex>
 
           <Flex direction="row" justify="space-between" align="center" pt="md">
+            <Text size="sm" c="dimmed">
+              Owner: {problem.user_address}
+            </Text>
             <Text size="sm" c="dimmed">
               Added: {getDate(problem.timestamp)}
             </Text>

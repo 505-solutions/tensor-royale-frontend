@@ -5,8 +5,11 @@ import { useState } from 'react';
 import { IconCheck } from '@tabler/icons-react';
 import { AddDatasetComponent } from '../datasets/AddDatasetComponent';
 import { postProblem } from '@/utils/data-connections';
+import { useDynamicContext } from '@dynamic-labs/sdk-react-core';
 
 export function AddProblemComponent() {
+  const { primaryWallet } = useDynamicContext();
+
   const [submitted, setSubmitted] = useState(false);
 
   const form = useForm({
@@ -19,6 +22,7 @@ export function AddProblemComponent() {
   });
 
   function onFormSubmit(data: any) {
+    data.address = primaryWallet?.address;
     setSubmitted(true);
     postProblem(data);
   }
