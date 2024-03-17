@@ -7,7 +7,6 @@ const instance = axios.create({
   timeout: 1000,
 });
 
-
 export async function getProblems() {
   const res = await instance.post('problems', {});
   return res;
@@ -36,10 +35,7 @@ export async function postProblem(model: any) {
     reward: model.reward,
   };
 
-  console.log(data)
-
   const res = await instance.post('problems/create', data);
-
 
   return res;
 }
@@ -59,12 +55,17 @@ export async function getUserDatasets(addr: string) {
   return res;
 }
 
+export async function getDatasetById(e: number) {
+  const res = await instance.post('data/get', { id: e });
+  return res; 
+}
+
 export async function postDataset(model: any) {
   const data = {
     timestamp: Date.now(),
-    name: model.name, 
+    name: model.name,
     author: model.author,
-    file_train: model.file.name,
+    file_train: model.file_train,
     description: model.description,
     problem_id: +model.problem_id,
   };
@@ -95,5 +96,5 @@ export async function getProblemSubmissions(id: number) {
 
 export async function getUserSubmissions(addr: string) {
   const res = await instance.post('models', { author: addr });
-  return res; 
+  return res;
 }

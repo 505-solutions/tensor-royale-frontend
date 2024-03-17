@@ -1,5 +1,5 @@
 import { Center, Flex, Title, Button, Text } from '@mantine/core';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import { useEffect, useState } from 'react';
 import { DatasetItemComponent } from '@/components/datasets/DatasetItemComponent';

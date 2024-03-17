@@ -23,6 +23,7 @@ import { EthereumWalletConnectors } from '@dynamic-labs/ethereum';
 import { StarknetWalletConnectors } from '@dynamic-labs/starknet';
 import { IconUser } from '@tabler/icons-react';
 import { ProfilePage } from './pages/Profile.page';
+import { DatasetDetailComponent } from './components/datasets/DatasetDetailComponent';
 
 const evmNetworks = [
   {
@@ -134,8 +135,9 @@ export default function App() {
                     </Center>
                   }
                 />
+                <Route path="/data-sets/detail/:id" element={<DatasetDetailComponent />} />
                 <Route path="/problems/detail/:id" element={<ProblemDetailComponent />}></Route>
-                <Route path="/filecoin" element={<FilecoinUpload />} />
+                {/* <Route path="/filecoin" element={<FilecoinUpload />} /> */}
                 <Route path="/profile" element={<ProfilePage />} />
               </Routes>
             </AppShell.Main>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Center, Flex, Badge, Card, Group, Text, Title, ScrollArea, Button } from '@mantine/core';
 import { IconCheck, IconX } from '@tabler/icons-react';
 import { DatasetModel, ModelTraining, ProblemModel } from '@/utils/models';
@@ -12,6 +12,7 @@ import {
 
 export function ProblemDetailComponent() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [submissions, setSubmissions] = useState([]);
   const [datasets, setDatasets] = useState([]);
@@ -81,7 +82,17 @@ export function ProblemDetailComponent() {
 
           <ScrollArea mah="500px">
             {datasets.map((ds: DatasetModel) => (
-              <Card shadow="sm" padding="lg" radius="md" withBorder mb="4px">
+              <Card
+                shadow="sm"
+                padding="lg"
+                radius="md"
+                withBorder
+                mb="4px"
+                style={{ cursor: 'pointer' }}
+                onClick={() => {
+                  navigate(`../data-sets/detail/${ds.id}`);
+                }}
+              >
                 <Group justify="space-between" mt="md" mb="xs">
                   <Text fw={600}>Author:{ds?.author}</Text>
                   <Badge color="green">{ds.size ?? '?'}MB</Badge>

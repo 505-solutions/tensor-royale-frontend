@@ -1,4 +1,16 @@
-import { Textarea, Group, Button, Select, FileInput, Title, Text, TextInput, List, Code, ListItem } from '@mantine/core';
+import {
+  Textarea,
+  Group,
+  Button,
+  Select,
+  FileInput,
+  Title,
+  Text,
+  TextInput,
+  List,
+  Code,
+  ListItem,
+} from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -43,10 +55,10 @@ export function AddDatasetComponent(props?: any) {
 
   function onFormSubmit(data: any) {
     data.author = primaryWallet?.address;
-    data.file = fileUrls;
+
+    data.file_train = JSON.stringify(fileUrls);
     postDataset(data);
   }
-
 
   return (
     <form onSubmit={form.onSubmit((values) => onFormSubmit(values))}>
