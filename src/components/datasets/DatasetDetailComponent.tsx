@@ -1,6 +1,6 @@
 import { getDatasetById, getProblemById } from '@/utils/data-connections';
 import { DataModel, DatasetModel, ProblemModel } from '@/utils/models';
-import { Card, Center, Flex, Text, Title } from '@mantine/core';
+import { Card, Center, Flex, Group, Text, Title } from '@mantine/core';
 import { useState, useEffect } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { IpfsFilesList } from '../IpfsFilesListComponent';
@@ -20,12 +20,17 @@ export function DatasetDetailComponent() {
 
         setDataset(res.data as DataModel);
       });
+    }
+  }, []);
 
+  useEffect(() => {
+    if (dataset?.problem_id !== undefined) {
       getProblemById(dataset?.problem_id).then((res) => {
+        console.log('problem', res);
         setProblem(res);
       });
     }
-  }, []);
+  }, [dataset]);
 
   return (
     <>
@@ -33,15 +38,7 @@ export function DatasetDetailComponent() {
         <Flex w="70vw" direction="column">
           {dataset !== undefined ? (
             <>
-              <Card
-                shadow="sm"
-                padding="lg"
-                radius="md"
-                withBorder
-                mb="4px"
-                mt="md"
-                style={{ cursor: 'pointer' }}
-              >
+              <Card shadow="sm" padding="lg" radius="md" withBorder mb="4px" mt="md">
                 <Flex direction="row" justify="space-between">
                   <Title order={2}>Dataset: {dataset?.name}</Title>
                   <Text>By: {dataset.author}</Text>
@@ -51,9 +48,12 @@ export function DatasetDetailComponent() {
 
                 <Flex direction="row" justify="space-between">
                   <Text>Published at: {getDate(dataset.timestamp)}</Text>
-                  <NavLink to={`../problems/detail/${problem?.id}`}>
-                    <Text> {problem?.title}</Text>
-                  </NavLink>
+                  <Group gap="xs">
+                    <Text>Problem: </Text>
+                    <NavLink to={`../problems/detail/${problem?.id}`}>
+                      <Text>{problem?.title}</Text>
+                    </NavLink>
+                  </Group>
                 </Flex>
               </Card>
               <Title mt="md" order={3}>

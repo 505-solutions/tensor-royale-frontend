@@ -1,5 +1,5 @@
 import { getUserDatasets, getUserProblems, getUserSubmissions } from '@/utils/data-connections';
-import { DatasetModel, ProblemModel } from '@/utils/models';
+import { DatasetModel, ModelTraining, ProblemModel } from '@/utils/models';
 import { useDynamicContext } from '@dynamic-labs/sdk-react-core';
 import { Card, Center, Flex, Group, ScrollArea, Title, Text } from '@mantine/core';
 import { useEffect, useState } from 'react';
@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 export function ProfilePage() {
   const { primaryWallet } = useDynamicContext();
+
 
   const navigate = useNavigate();
 
@@ -94,7 +95,7 @@ export function ProfilePage() {
             Your submitted models
           </Title>
           <ScrollArea mah="500px">
-            {submissions.map((p: ProblemModel, key) => (
+            {submissions.map((p: ModelTraining, key) => (
               <Card
                 key={key}
                 shadow="sm"
@@ -108,7 +109,7 @@ export function ProfilePage() {
                 }}
               >
                 <Group justify="space-between" mt="md" mb="xs">
-                  <Text fw={600}>{p.title}</Text>
+                  <Text fw={600}>{p.name}</Text>
                 </Group>
                 <Text size="sm">{p?.description}</Text>
               </Card>

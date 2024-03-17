@@ -1,10 +1,24 @@
-import { Center, Flex, Title, Button, Text, Tabs } from '@mantine/core';
-import { NavLink } from 'react-router-dom';
+import { Center, Flex, Title, Button, Text, Tabs, Card, Group } from '@mantine/core';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { IconDna, IconRobot } from '@tabler/icons-react';
 import { dummyActiveModels } from '@/utils/dummy-data';
 import { ModelItemComponent } from '@/components/models/ModelItemComponent';
+import { useEffect, useState } from 'react';
+import { getAllModels } from '@/utils/data-connections';
+import { getDate } from '@/utils/helper-functions';
+import { ModelTraining } from '@/utils/models';
 
 export function ModelsPage() {
+  const [models, setModels] = useState<ModelTraining[]>([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    getAllModels().then((res) => {
+      console.log(res);
+      setModels(res.data);
+    });
+  }, []);
+
   return (
     <>
       <Center w="100vw">
@@ -16,7 +30,42 @@ export function ModelsPage() {
               <Button justify="center">Add model</Button>
             </NavLink>
           </Flex>
-          <Tabs defaultValue="all" pt="md">
+          <Flex direction="column">
+            {models.map((model) => (
+              <Card
+                shadow="sm"
+                padding="lg"
+                radius="md"
+                withBorder
+                mb="4px"
+                mt="md"
+                w="100%"
+                style={{ cursor: 'pointer' }}
+                onClick={() => {
+                  navigate(`../models/detail/${model.id}`);
+                }}
+              >
+                <Flex direction="row" justify="space-between">
+                  <Title order={2}>{model?.name}</Title>
+                  <Text>By: {model.author}</Text>
+                </Flex>
+
+                <Text>{model?.description}</Text>
+
+                <Flex direction="row" justify="space-between">
+                  <Text>Published at: {getDate(model.timestamp)}</Text>
+                  <Group gap="xs">
+                    <Text>Problem: </Text>
+                    {/* <NavLink to={`../problems/detail/${problem?.id}`}>
+                      <Text>{problem?.title}</Text>
+                    </NavLink> */}
+                  </Group>
+                </Flex>
+              </Card>
+            ))}
+          </Flex>
+
+          {/* <Tabs defaultValue="all" pt="md">
             <Tabs.List>
               <Tabs.Tab value="all" leftSection={<IconRobot />}>
                 All
@@ -41,7 +90,7 @@ export function ModelsPage() {
                 ))}
               </Flex>
             </Tabs.Panel>
-          </Tabs>
+          </Tabs> */}
         </Flex>
       </Center>
     </>

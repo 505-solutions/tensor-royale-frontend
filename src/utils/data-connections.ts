@@ -36,7 +36,7 @@ export async function postProblem(model: any) {
   };
 
   const res = await instance.post('problems/create', data);
-
+  console.log(res)
   return res;
 }
 
@@ -102,4 +102,9 @@ export async function getUserSubmissions(addr: string) {
 export async function getModelById(i: number) {
   const res = await instance.post('models/get', { id: i });
   return res; 
+}
+
+export async function getAllModels() {
+  const res = await instance.post('models', {}); 
+  return res;  
 }
