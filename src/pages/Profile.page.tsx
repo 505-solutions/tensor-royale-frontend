@@ -1,7 +1,7 @@
 import { getUserDatasets, getUserProblems, getUserSubmissions } from '@/utils/data-connections';
 import { DatasetModel, ProblemModel } from '@/utils/models';
 import { useDynamicContext } from '@dynamic-labs/sdk-react-core';
-import { Badge, Card, Center, Flex, Group, ScrollArea, Title, Text } from '@mantine/core';
+import { Card, Center, Flex, Group, ScrollArea, Title, Text } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,20 +15,21 @@ export function ProfilePage() {
   const [problems, setProblems] = useState([]);
 
   useEffect(() => {
-    getUserProblems(primaryWallet?.address!).then((res) => {
-      console.log('user result', res);
-      setProblems(res.data);
-    });
-    getUserDatasets(primaryWallet?.address!).then((res) => {
-      console.log('datasets result', res);
-      setDatasets(res.data);
-    });
+    if (primaryWallet?.address === undefined) {
+      console.log('nope');
+    } else {
+      getUserProblems(primaryWallet?.address !).then((res) => {
+        setProblems(res.data);
+      });
+      getUserDatasets(primaryWallet?.address !).then((res) => {
+        setDatasets(res.data);
+      });
 
-    getUserSubmissions(primaryWallet?.address!).then((res) => {
-      console.log('submissions result', res);
-      setSubmissions(res.data);
-    });
-  }, []);
+      getUserSubmissions(primaryWallet?.address !).then((res) => {
+        setSubmissions(res.data);
+      });
+    }
+  }, [primaryWallet?.address]);
 
   function cardClick(url: string) {
     navigate(url);
@@ -44,7 +45,7 @@ export function ProfilePage() {
           <Title order={3} pt="lg" pb="sm">
             Your submitted problems
           </Title>
-          <ScrollArea h="500px">
+          <ScrollArea mah="500px">
             {problems.map((p: ProblemModel, key) => (
               <Card
                 key={key}
@@ -67,7 +68,7 @@ export function ProfilePage() {
           <Title order={3} pt="lg" pb="sm">
             Your submitted datasets
           </Title>
-          <ScrollArea h="500px">
+          <ScrollArea mah="500px">
             {datasets.map((p: DatasetModel, key) => (
               <Card key={key} shadow="sm" padding="lg" radius="md" withBorder mb="4px">
                 <Group justify="space-between" mt="md" mb="xs">
@@ -81,7 +82,7 @@ export function ProfilePage() {
           <Title order={3} pt="lg" pb="sm">
             Your submitted models
           </Title>
-          <ScrollArea h="500px">
+          <ScrollArea mah="500px">
             {submissions.map((p: ProblemModel, key) => (
               <Card key={key} shadow="sm" padding="lg" radius="md" withBorder mb="4px">
                 <Group justify="space-between" mt="md" mb="xs">
