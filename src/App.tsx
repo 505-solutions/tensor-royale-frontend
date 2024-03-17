@@ -94,11 +94,6 @@ export default function App() {
                       Leaderboard
                     </Button>
                   </NavLink>
-                  <NavLink to="/filecoin">
-                    <Button justify="center" variant="default" style={{ border: '0px' }}>
-                      Filecoin
-                    </Button>
-                  </NavLink>
                   <DynamicWidget />
                   <NavLink to="/profile">
                     <IconUser />
