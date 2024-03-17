@@ -19,7 +19,7 @@ export interface DataModel {
   author: string;
   file_train: unknown; // nek zip file
   description: string;
-  problem_id: number | null;
+  problem_id: number | undefined;
 }
 
 export interface ModelTraining {

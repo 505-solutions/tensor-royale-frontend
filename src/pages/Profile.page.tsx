@@ -18,14 +18,14 @@ export function ProfilePage() {
     if (primaryWallet?.address === undefined) {
       console.log('nope');
     } else {
-      getUserProblems(primaryWallet?.address !).then((res) => {
+      getUserProblems(primaryWallet?.address!).then((res) => {
         setProblems(res.data);
       });
-      getUserDatasets(primaryWallet?.address !).then((res) => {
+      getUserDatasets(primaryWallet?.address!).then((res) => {
         setDatasets(res.data);
       });
 
-      getUserSubmissions(primaryWallet?.address !).then((res) => {
+      getUserSubmissions(primaryWallet?.address!).then((res) => {
         setSubmissions(res.data);
       });
     }
@@ -70,7 +70,18 @@ export function ProfilePage() {
           </Title>
           <ScrollArea mah="500px">
             {datasets.map((p: DatasetModel, key) => (
-              <Card key={key} shadow="sm" padding="lg" radius="md" withBorder mb="4px">
+              <Card
+                key={key}
+                shadow="sm"
+                padding="lg"
+                radius="md"
+                withBorder
+                mb="4px"
+                style={{ cursor: 'pointer' }}
+                onClick={() => {
+                  navigate(`../data-sets/detail/${p.id}`);
+                }}
+              >
                 <Group justify="space-between" mt="md" mb="xs">
                   <Text fw={600}>{p.name}</Text>
                 </Group>
@@ -84,7 +95,18 @@ export function ProfilePage() {
           </Title>
           <ScrollArea mah="500px">
             {submissions.map((p: ProblemModel, key) => (
-              <Card key={key} shadow="sm" padding="lg" radius="md" withBorder mb="4px">
+              <Card
+                key={key}
+                shadow="sm"
+                padding="lg"
+                radius="md"
+                withBorder
+                mb="4px"
+                style={{ cursor: 'pointer' }}
+                onClick={() => {
+                  navigate(`../models/detail/${p.id}`);
+                }}
+              >
                 <Group justify="space-between" mt="md" mb="xs">
                   <Text fw={600}>{p.title}</Text>
                 </Group>

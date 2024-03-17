@@ -28,7 +28,7 @@ export function ModelDetailComponent() {
         <Flex w="70vw" direction="column">
           {model !== undefined ? (
             <>
-              <Title order={2}>Dataset: {model?.name}</Title>
+              <Title order={2}>Model: {model?.name}</Title>
               <Text>{model?.description}</Text>
               <IpfsFilesList data={model?.model} />
             </>
