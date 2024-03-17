@@ -1,6 +1,6 @@
 import '@mantine/core/styles.css';
 import { MantineProvider, AppShell, Text, Group, Button, Center, Flex } from '@mantine/core';
-import { NavLink, Route, Routes } from 'react-router-dom';
+import { NavLink, Route, Routes, useNavigate } from 'react-router-dom';
 
 import { theme } from './theme';
 import { HomePage } from './pages/Home.page';
@@ -46,6 +46,8 @@ const evmNetworks = [
 ];
 
 export default function App() {
+  const navigate = useNavigate();
+
   return (
     <DynamicContextProvider
       settings={{
@@ -60,16 +62,18 @@ export default function App() {
           <AppShell>
             <AppShell.Header>
               <Group h="70px" px="md" justify="space-between">
-                <Text size="xl" fw={700}>
+                <Text
+                  size="xl"
+                  style={{cursor: 'pointer'}}
+                  fw={700}
+                  onClick={() => {
+                    navigate('/');
+                  }}
+                >
                   TensorRoyale
                 </Text>
 
                 <Group justify="center">
-                  <NavLink to="/">
-                    <Button justify="center" variant="default" style={{ border: '0px' }}>
-                      Home
-                    </Button>
-                  </NavLink>
                   <NavLink to="/problems">
                     <Button justify="center" variant="default" style={{ border: '0px' }}>
                       Problems
