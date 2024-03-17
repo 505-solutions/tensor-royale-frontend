@@ -1,9 +1,11 @@
-import { Textarea, Group, Button, Select, FileInput, Title, Text, TextInput } from '@mantine/core';
+import { Textarea, Group, Button, Select, FileInput, Title, Text, TextInput, List, Code, ListItem } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDynamicContext } from '@dynamic-labs/sdk-react-core';
 import { getProblems, postDataset } from '@/utils/data-connections';
+import { FilecoinUploadField } from '../fields/FilecoinUploadField';
+import { IconFile } from '@tabler/icons-react';
 
 export function AddDatasetComponent(props?: any) {
   const { primaryWallet } = useDynamicContext();
@@ -13,6 +15,9 @@ export function AddDatasetComponent(props?: any) {
   const { displayTitle } = props ?? false;
 
   const [problems, setProblems] = useState([]);
+  const [fileUrls, setFileUrls] = useState([]);
+
+  const [datasetPlaceholder, setDatasetPlaceholder] = useState('Dataset...');
 
   useEffect(() => {
     getProblems().then((rsp) => {
@@ -20,6 +25,12 @@ export function AddDatasetComponent(props?: any) {
       setProblems(p);
     });
   }, []);
+
+  useEffect(() => {
+    const p = fileUrls.length !== 1 ? ' files' : ' file';
+
+    setDatasetPlaceholder(fileUrls.length + p);
+  }, [fileUrls]);
 
   const form = useForm({
     initialValues: {
@@ -32,8 +43,10 @@ export function AddDatasetComponent(props?: any) {
 
   function onFormSubmit(data: any) {
     data.author = primaryWallet?.address;
+    data.file = fileUrls;
     postDataset(data);
   }
+
 
   return (
     <form onSubmit={form.onSubmit((values) => onFormSubmit(values))}>
@@ -56,11 +69,7 @@ export function AddDatasetComponent(props?: any) {
         {...form.getInputProps('problem_id')}
       />
 
-      <TextInput
-        label="Name"
-        placeholder="Your dataset name"
-        {...form.getInputProps('name')}
-      />
+      <TextInput label="Name" placeholder="Your dataset name" {...form.getInputProps('name')} />
 
       <Textarea
         label="Description"
@@ -69,12 +78,39 @@ export function AddDatasetComponent(props?: any) {
         {...form.getInputProps('description')}
       />
 
-      <FileInput
+      {/* <FileInput
         label="Dataset file"
         description="Add your dataset here. It can be a .zip or .rar file, or any of the recognised dataset file forms."
         placeholder="Dataset..."
         {...form.getInputProps('file')}
+      /> */}
+
+      <FilecoinUploadField
+        label="Dataset file"
+        placeholder={datasetPlaceholder}
+        setFileUrls={setFileUrls}
       />
+
+      <List spacing="xs" size="sm" center icon={<IconFile />}>
+        {fileUrls.map((file: any, index: number) => (
+          <ListItem key={index}>
+            <Code>
+              <b>{file.Name || '< Parent folder >'}</b>
+            </Code>{' '}
+            -{' '}
+            <Code>
+              {file.Hash} |{' '}
+              <a
+                href={`https://gateway.lighthouse.storage/ipfs/${file.Hash}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                IPFS ↗
+              </a>{' '}
+            </Code>
+          </ListItem>
+        ))}
+      </List>
 
       <Group justify="flex-end" mt="md">
         <Button type="submit">Submit</Button>

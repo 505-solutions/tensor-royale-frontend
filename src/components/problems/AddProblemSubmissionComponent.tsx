@@ -9,6 +9,9 @@ import {
   FileInput,
   Select,
   TextInput,
+  Code,
+  List,
+  ListItem,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { Link, useParams } from 'react-router-dom';
@@ -16,6 +19,8 @@ import { useEffect, useState } from 'react';
 import { getProblemById, getProblemDatasets, postSubmission } from '@/utils/data-connections';
 import { ProblemModel } from '@/utils/models';
 import { useDynamicContext } from '@dynamic-labs/sdk-react-core';
+import { IconFile } from '@tabler/icons-react';
+import { FilecoinUploadField } from '../fields/FilecoinUploadField';
 
 export function AddProblemSubmissionComponent() {
   const { primaryWallet } = useDynamicContext();
@@ -25,14 +30,21 @@ export function AddProblemSubmissionComponent() {
   const [problem, setProblem] = useState<ProblemModel | undefined>(undefined);
   const [datasets, setDatasets] = useState([]);
 
+  const [fileUrls, setFileUrls] = useState([]);
+  const [modelPlaceholder, setModelPlaceholder] = useState('Model...');
+
+  useEffect(() => {
+    const p = fileUrls.length !== 1 ? ' files' : ' file';
+
+    setModelPlaceholder(fileUrls.length + p);
+  }, [fileUrls]);
+
   useEffect(() => {
     getProblemById(+id!).then((r) => {
       setProblem(r);
     });
     getProblemDatasets(+id!).then((r: any) => {
-      console.log(r)
       const ds = r.data.map((d: any) => ({ value: d.id.toString(), label: d.name }));
-      console.log(ds)
       setDatasets(ds);
     });
   }, []);
@@ -87,12 +99,32 @@ export function AddProblemSubmissionComponent() {
               {...form.getInputProps('description')}
             />
 
-            <FileInput
+            <FilecoinUploadField
               label="Model file"
-              description="Add your model file in one of the standard model formats here. "
-              placeholder="Dataset..."
-              {...form.getInputProps('file')}
+              placeholder={modelPlaceholder}
+              setFileUrls={setFileUrls}
             />
+
+            <List spacing="xs" size="sm" center icon={<IconFile />}>
+              {fileUrls.map((file: any, index: number) => (
+                <ListItem key={index}>
+                  <Code>
+                    <b>{file.Name || '< Parent folder >'}</b>
+                  </Code>{' '}
+                  -{' '}
+                  <Code>
+                    {file.Hash} |{' '}
+                    <a
+                      href={`https://gateway.lighthouse.storage/ipfs/${file.Hash}`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      IPFS ↗
+                    </a>{' '}
+                  </Code>
+                </ListItem>
+              ))}
+            </List>
 
             <Group justify="flex-end" mt="md">
               <Button type="submit">Submit</Button>

@@ -1,7 +1,20 @@
-import { Center, Flex, Title, Textarea, Group, Button, Text, FileInput } from '@mantine/core';
+import { Center, Flex, Title, Textarea, Group, Button, Text, FileInput, Code, List, ListItem } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import { IconFile } from '@tabler/icons-react';
+import { FilecoinUploadField } from '../fields/FilecoinUploadField';
+import { useEffect, useState } from 'react';
 
 export function AddModelComponent() {
+  const [fileUrls, setFileUrls] = useState([]);
+  const [modelPlaceholder, setModelPlaceholder] = useState('Model...');
+
+
+  useEffect(() => {
+    const p = fileUrls.length !== 1 ? ' files' : ' file';
+
+    setModelPlaceholder(fileUrls.length + p);
+  }, [fileUrls]);
+
   const form = useForm({
     initialValues: {
       title: '',
@@ -35,12 +48,32 @@ export function AddModelComponent() {
               {...form.getInputProps('description')}
             />
 
-            <FileInput
+            <FilecoinUploadField
               label="Model file"
-              description="Add your model file in one of the standard model formats here. "
-              placeholder="Dataset..."
-              {...form.getInputProps('file')}
+              placeholder={modelPlaceholder}
+              setFileUrls={setFileUrls}
             />
+
+            <List spacing="xs" size="sm" center icon={<IconFile />}>
+              {fileUrls.map((file: any, index: number) => (
+                <ListItem key={index}>
+                  <Code>
+                    <b>{file.Name || '< Parent folder >'}</b>
+                  </Code>{' '}
+                  -{' '}
+                  <Code>
+                    {file.Hash} |{' '}
+                    <a
+                      href={`https://gateway.lighthouse.storage/ipfs/${file.Hash}`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      IPFS ↗
+                    </a>{' '}
+                  </Code>
+                </ListItem>
+              ))}
+            </List>
 
             <Group justify="flex-end" mt="md">
               <Button type="submit">Submit</Button>
