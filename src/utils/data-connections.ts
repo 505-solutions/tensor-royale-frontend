@@ -57,7 +57,7 @@ export async function getUserDatasets(addr: string) {
 
 export async function getDatasetById(e: number) {
   const res = await instance.post('data/get', { id: e });
-  return res; 
+  return res;
 }
 
 export async function postDataset(model: any) {
@@ -81,7 +81,7 @@ export async function postSubmission(model: any) {
     data_id: model.data_id,
     name: model.name,
     description: model.description,
-    model: model.file.name,
+    model: model.file,
     author: model.author,
   };
 
@@ -97,4 +97,9 @@ export async function getProblemSubmissions(id: number) {
 export async function getUserSubmissions(addr: string) {
   const res = await instance.post('models', { author: addr });
   return res;
+}
+
+export async function getModelById(i: number) {
+  const res = await instance.post('models/get', { id: i });
+  return res; 
 }

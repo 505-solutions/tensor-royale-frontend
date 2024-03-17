@@ -25,6 +25,7 @@ export interface DataModel {
 export interface ModelTraining {
   id: number;
   description?: string;
+  name: string; 
   author: string;
   timestamp: number;
   problem_id: number | null;

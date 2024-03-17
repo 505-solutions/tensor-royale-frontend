@@ -62,6 +62,7 @@ export function AddProblemSubmissionComponent() {
 
   function onFormSubmit(data: any) {
     data.author = primaryWallet.address;
+    data.file = JSON.stringify(fileUrls);
     postSubmission(data);
   }
 

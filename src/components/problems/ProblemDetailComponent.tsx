@@ -22,6 +22,7 @@ export function ProblemDetailComponent() {
     if (id) {
       getProblemById(+id).then((resp) => setProblem(resp));
       getProblemSubmissions(+id).then((resp) => {
+        console.log(resp);
         setSubmissions(resp.data);
       });
       getProblemDatasets(+id).then((resp) => {
@@ -111,7 +112,16 @@ export function ProblemDetailComponent() {
 
           <ScrollArea h="500px">
             {submissions.map((ds: ModelTraining) => (
-              <Card shadow="sm" padding="lg" radius="md" withBorder mb="4px">
+              <Card
+                shadow="sm"
+                padding="lg"
+                radius="md"
+                withBorder
+                mb="4px"
+                onClick={() => {
+                  navigate(`../models/detail/${ds.id}`);
+                }}
+              >
                 <Group justify="space-between" mt="md" mb="xs">
                   <Text fw={600}>Author:{ds?.author}</Text>
                   <Badge color="green">{ds.size ?? '?'}MB</Badge>

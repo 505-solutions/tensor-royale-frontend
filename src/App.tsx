@@ -24,6 +24,7 @@ import { StarknetWalletConnectors } from '@dynamic-labs/starknet';
 import { IconUser } from '@tabler/icons-react';
 import { ProfilePage } from './pages/Profile.page';
 import { DatasetDetailComponent } from './components/datasets/DatasetDetailComponent';
+import { ModelDetailComponent } from './components/models/ModelDetailComponent';
 
 const evmNetworks = [
   {
@@ -108,6 +109,7 @@ export default function App() {
                 <Route path="/problems" element={<ProblemsPage />} />
                 <Route path="/data-sets" element={<DataSetsPage />} />
                 <Route path="/models" element={<ModelsPage />} />
+                <Route path="/models/detail/:id" element={<ModelDetailComponent />} />
                 <Route path="/leaderboard" element={<LeaderboardPage />} />
                 <Route path="/problems/add" element={<AddProblemComponent />} />
                 <Route
