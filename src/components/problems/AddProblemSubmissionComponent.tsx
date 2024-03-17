@@ -19,19 +19,40 @@ import { useEffect, useState } from 'react';
 import { getProblemById, getProblemDatasets, postSubmission } from '@/utils/data-connections';
 import { ProblemModel } from '@/utils/models';
 import { useDynamicContext } from '@dynamic-labs/sdk-react-core';
-import { IconFile } from '@tabler/icons-react';
+import { IconFile, IconCheck } from '@tabler/icons-react';
 import { FilecoinUploadField } from '../fields/FilecoinUploadField';
+
+import json from '../../utils/TensorRoyale.json';
+
+import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi';
 
 export function AddProblemSubmissionComponent() {
   const { primaryWallet } = useDynamicContext();
 
   const { id } = useParams();
+  const [submitted, setSubmitted] = useState(false);
 
   const [problem, setProblem] = useState<ProblemModel | undefined>(undefined);
   const [datasets, setDatasets] = useState([]);
 
   const [fileUrls, setFileUrls] = useState([]);
   const [modelPlaceholder, setModelPlaceholder] = useState('Model...');
+
+  const [reqId, setReqId] = useState(0);
+  const [reqCom, setReqCom] = useState(0);
+
+  const { config } = usePrepareContractWrite({
+    abi: json.abi,
+    address: '0xc28cF49aCCeFB1F570008Fe484d6D5AA22ac3f5C',
+    functionName: 'registerRequest',
+    args: [BigInt(1), BigInt(reqId), BigInt(reqCom), BigInt(0)],
+  });
+
+  const { data, write } = useContractWrite(config);
+
+  const { isLoading, isSuccess } = useWaitForTransaction({
+    hash: data?.hash,
+  });
 
   useEffect(() => {
     const p = fileUrls.length !== 1 ? ' files' : ' file';
@@ -60,10 +81,15 @@ export function AddProblemSubmissionComponent() {
     },
   });
 
-  function onFormSubmit(data: any) {
+  async function onFormSubmit(data: any) {
     data.author = primaryWallet.address;
     data.file = JSON.stringify(fileUrls);
-    postSubmission(data);
+    const res = await postSubmission(data);
+
+    setReqId(res.data.id);
+    setReqCom(res.data.hash);
+    write?.();
+    setSubmitted(true);
   }
 
   return (
@@ -128,7 +154,15 @@ export function AddProblemSubmissionComponent() {
             </List>
 
             <Group justify="flex-end" mt="md">
-              <Button type="submit">Submit</Button>
+              {submitted && !isLoading ? (
+                <Button type="submit" color="green">
+                  <IconCheck /> Submited
+                </Button>
+              ) : (
+                <Button type="submit" loading={isLoading}>
+                  Submit
+                </Button>
+              )}
             </Group>
           </form>
         </Flex>

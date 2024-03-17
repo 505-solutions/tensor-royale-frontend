@@ -29,7 +29,7 @@ export function ModelsPage() {
             <NavLink to="add">
               <Button justify="center">Add model</Button>
             </NavLink>
-          </Flex>
+          </Flex> 
           <Flex direction="column">
             {models.map((model) => (
               <Card

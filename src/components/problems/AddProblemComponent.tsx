@@ -6,11 +6,31 @@ import { IconCheck } from '@tabler/icons-react';
 import { AddDatasetComponent } from '../datasets/AddDatasetComponent';
 import { postProblem } from '@/utils/data-connections';
 import { useDynamicContext } from '@dynamic-labs/sdk-react-core';
+import { Signer } from 'ethers';
+
+import json from '../../utils/TensorRoyale.json';
+
+import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi';
 
 export function AddProblemComponent() {
   const { primaryWallet } = useDynamicContext();
 
   const [submitted, setSubmitted] = useState(false);
+  const [reqId, setReqId] = useState(0);
+  const [reqCom, setReqCom] = useState(0);
+
+  const { config } = usePrepareContractWrite({
+    abi: json.abi,
+    address: '0xc28cF49aCCeFB1F570008Fe484d6D5AA22ac3f5C',
+    functionName: 'registerRequest',
+    args: [BigInt(1), BigInt(reqId), BigInt(reqCom), BigInt(0)],
+  });
+
+  const { data, write } = useContractWrite(config);
+
+  const { isLoading, isSuccess } = useWaitForTransaction({
+    hash: data?.hash,
+  });
 
   const form = useForm({
     initialValues: {
@@ -21,10 +41,13 @@ export function AddProblemComponent() {
     },
   });
 
-  function onFormSubmit(data: any) {
+  async function onFormSubmit(data: any) {
     data.address = primaryWallet?.address;
+    const res = await postProblem(data);
+    setReqId(res.data.id);
+    setReqCom(res.data.hash);
+    write?.();
     setSubmitted(true);
-    postProblem(data);
   }
 
   return (
@@ -66,17 +89,19 @@ export function AddProblemComponent() {
             />
 
             <Group justify="flex-end" mt="md">
-              {submitted ? (
+              {submitted && !isLoading ? (
                 <Button type="submit" color="green">
                   <IconCheck /> Submited
                 </Button>
               ) : (
-                <Button type="submit">Submit</Button>
+                <Button type="submit" loading={isLoading}>
+                  Submit
+                </Button>
               )}
             </Group>
           </form>
 
-          {submitted ? <AddDatasetComponent /> : null}
+          {submitted && !isLoading ? <AddDatasetComponent /> : null}
         </Flex>
       </Center>
     </>

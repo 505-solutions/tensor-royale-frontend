@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { ProblemModel } from './models';
+import registerCommitmentOnchain from './registerOnChain';
+
 // import { dateToTimestamp } from './helper-functions';
 
 const instance = axios.create({
@@ -36,7 +38,7 @@ export async function postProblem(model: any) {
   };
 
   const res = await instance.post('problems/create', data);
-  console.log(res)
+
   return res;
 }
 
@@ -101,10 +103,10 @@ export async function getUserSubmissions(addr: string) {
 
 export async function getModelById(i: number) {
   const res = await instance.post('models/get', { id: i });
-  return res; 
+  return res;
 }
 
 export async function getAllModels() {
-  const res = await instance.post('models', {}); 
-  return res;  
+  const res = await instance.post('models', {});
+  return res;
 }

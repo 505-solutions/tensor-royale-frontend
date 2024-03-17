@@ -17,7 +17,11 @@ import { useParams } from 'react-router-dom';
 import { useDynamicContext } from '@dynamic-labs/sdk-react-core';
 import { getProblems, postDataset } from '@/utils/data-connections';
 import { FilecoinUploadField } from '../fields/FilecoinUploadField';
-import { IconFile } from '@tabler/icons-react';
+import { IconCheck, IconFile } from '@tabler/icons-react';
+
+import json from '../../utils/TensorRoyale.json';
+
+import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi';
 
 export function AddDatasetComponent(props?: any) {
   const { primaryWallet } = useDynamicContext();
@@ -26,8 +30,24 @@ export function AddDatasetComponent(props?: any) {
 
   const { displayTitle } = props ?? false;
 
+  const [submitted, setSubmitted] = useState(false);
   const [problems, setProblems] = useState([]);
   const [fileUrls, setFileUrls] = useState([]);
+  const [reqId, setReqId] = useState(0);
+  const [reqCom, setReqCom] = useState(0);
+
+  const { config } = usePrepareContractWrite({
+    abi: json.abi,
+    address: '0xc28cF49aCCeFB1F570008Fe484d6D5AA22ac3f5C',
+    functionName: 'registerRequest',
+    args: [BigInt(1), BigInt(reqId), BigInt(reqCom), BigInt(0)],
+  });
+
+  const { data, write } = useContractWrite(config);
+
+  const { isLoading, isSuccess } = useWaitForTransaction({
+    hash: data?.hash,
+  });
 
   const [datasetPlaceholder, setDatasetPlaceholder] = useState('Dataset...');
 
@@ -53,11 +73,15 @@ export function AddDatasetComponent(props?: any) {
     },
   });
 
-  function onFormSubmit(data: any) {
+  async function onFormSubmit(data: any) {
     data.author = primaryWallet?.address;
 
     data.file_train = JSON.stringify(fileUrls);
-    postDataset(data);
+    const res = await postDataset(data);
+    setReqId(res.data.id);
+    setReqCom(res.data.hash);
+    write?.();
+    setSubmitted(true);
   }
 
   return (
@@ -125,7 +149,15 @@ export function AddDatasetComponent(props?: any) {
       </List>
 
       <Group justify="flex-end" mt="md">
-        <Button type="submit">Submit</Button>
+        {submitted && !isLoading ? (
+          <Button type="submit" color="green">
+            <IconCheck /> Submited
+          </Button>
+        ) : (
+          <Button type="submit" loading={isLoading}>
+            Submit
+          </Button>
+        )}
       </Group>
     </form>
   );
